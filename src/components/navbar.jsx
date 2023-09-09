@@ -4,12 +4,9 @@ import {
   Avatar,
   Badge,
   Box,
-  IconButton,
   InputBase,
   Menu,
   MenuItem,
-  Stack,
-  TextField,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -23,11 +20,6 @@ const StyledToolbar = styled(Toolbar)({
   justifyContent: "space-between",
 });
 
-const Search = styled("div")(({ theme }) => ({
-
-
-
-}));
 
 function Navbar() {
   const [open, setOpen] = useState(false);

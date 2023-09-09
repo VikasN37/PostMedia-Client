@@ -1,5 +1,5 @@
 import { Avatar, AvatarGroup, Box, Divider, ImageList, ImageListItem, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
-import images from "./data";
+import images from './rightbardata';
 import React from "react";
 
 function Rightbar()

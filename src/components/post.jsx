@@ -1,6 +1,6 @@
 import {
      Avatar,
-     Box,
+  
      Card,
      CardActions,
      CardContent,
@@ -13,10 +13,10 @@ import {
    
    import ShareIcon from '@mui/icons-material/Share';
    import { Favorite, FavoriteBorder } from "@mui/icons-material";
-   import MoreVertIcon from '@mui/icons-material/MoreVert';
-   import FavoriteIcon from '@mui/icons-material/Favorite';
+   
+   import EditIcon from '@mui/icons-material/Edit';
 
-function Post()
+function Post({title, date ,image,description})
 {
      return(
           <>
@@ -29,25 +29,24 @@ function Post()
         }
         action={
           <IconButton aria-label="settings">
-            <MoreVertIcon />
+            <EditIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title= {title}
+        subheader={date}
       />
       <CardMedia
         component="img"
         height='400px'
-        image="https://source.unsplash.com/random"
-        alt="Paella dish"
+        image={image}
+        alt={title}
         className="fluid"
+       
         
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+        {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
