@@ -1,20 +1,23 @@
 import AddIcon from "@mui/icons-material/Add";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
-     Fab,
-     Box,
-     Typography,
-     Modal,
-     Button,
-     Tooltip,
-     Avatar,
-     TextField,
-     styled
-    
+  Fab,
+  Box,
+  Typography,
+  Modal,
+  Button,
+  Tooltip,
+  Avatar,
+  TextField,
+  styled,
+  ButtonGroup,
+  Input,
 } from "@mui/material";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { useState } from "react";
+import axios from "axios";
 
-const VisuallyHiddenInput = styled('input')`
+const VisuallyHiddenInput = styled("input")`
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
@@ -27,75 +30,122 @@ const VisuallyHiddenInput = styled('input')`
 `;
 
 function Add() {
-     const [open, setOpen] = useState(false)
-     return (
-          <>
-               <Tooltip onClick={() => setOpen(true)}
-                    title="Add post"
-                    sx={{
-                         position: "fixed",
-                         left: { xs: "calc(50%)", sm: 10 },
-                         bottom: 20,
-                    }}
-               >
-                    <Fab color="primary" aria-label="add" size="medium">
-                         <AddIcon />
-                    </Fab>
-               </Tooltip>
+  const [newPost, setNewpost] = useState({});
 
-               <Modal
-                    sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-                    open={open}
-                    onClose={() => setOpen(false)}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-               >
-                    <Box
-                         width={450}
-                         height={340}
-                         sx={{bgcolor:'background.default' , color:'text.primary'}}
-                         borderRadius={5}
-                         // textAlign={"center"}
-                         padding={5}
-                    >
-                         <Typography variant="h6" color={"gray"} mt={3}>
-                              Create Post
-                         </Typography>
+  function handleChange(e) {
+ 
+    console.log(e.target.name , e.target.value)
+    setNewpost({...newPost,[e.target.name]:e.target.value});
+  }
 
-                         <Box
-                              sx={{ display: "flex", alignItems: "center", gap: 2, padding: 3 }}
-                         >
-                              <Avatar
-                                   alt="Remy Sharp"
-                                   src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&w=1000&q=80"
-                              />
-                              <Typography fontWeight={500}>Mike</Typography>
-                         </Box>
+  function handleSubmit(e) 
+  {
+  e.preventDefault();
+  addPosts(newPost)  
+  
+  }
 
-                         <TextField
-                              id="standard-multiline-static"
-                              multiline
-                              rows={2}
-                              placeholder="Enter description"
-                              variant="standard"
-                              sx={{ width: '100%' }}
-                         />
-
-                         <Button sx={{marginTop:4}}
-                              component="label"
-                              variant="contained"
-                              startIcon={<CloudUploadIcon />}
-                              href="#file-upload"
-                         >
-                              Upload photo
-                              <VisuallyHiddenInput type="file" />
-                         </Button>
-                    </Box>
+  async function addPosts(newPost)
+  {
+     const res = await axios.post('http://localhost:8080/posts/create',newPost);
+     console.log(res.data);
+  }
 
 
-               </Modal>
-          </>
-     );
+
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Tooltip
+        onClick={() => setOpen(true)}
+        title="Add post"
+        sx={{
+          position: "fixed",
+          left: { xs: "calc(50%)", sm: 10 },
+          bottom: 20,
+        }}
+      >
+        <Fab color="primary" aria-label="add" size="medium">
+          <AddIcon />
+        </Fab>
+      </Tooltip>
+
+      <Modal
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          width="30%"
+          height="40%"
+          sx={{ bgcolor: "background.default", color: "text.primary" }}
+          borderRadius={5}
+          // textAlign={"center"}
+          padding={5}
+        >
+          <Typography variant="h6" color={"gray"} mt={1} mb={3}>
+            Create Post
+          </Typography>
+
+          <TextField
+            id="standard-multiline-static"
+            name="title"
+            placeholder="Enter Title"
+            variant="standard"
+            sx={{ width: "100%", marginBottom: 4 }}
+            onChange={handleChange}
+          />
+
+          <TextField
+            id="standard-multiline-static"
+            multiline
+            rows={2}
+            name="description"
+            placeholder="Enter Description"
+            variant="standard"
+            onChange={handleChange}
+            sx={{ width: "100%" }}
+          />
+
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            sx={{ marginTop: 4 }}
+          >
+            <ButtonGroup>
+              <Button
+                component="label"
+                variant="contained"
+                startIcon={<CloudUploadIcon />}
+                onChange={handleChange}
+              >
+                Upload photo
+                <input type="file" hidden name="img" />
+              </Button>
+
+
+{/* fix issue of date */}
+              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker sx={{ width: "40%" }} onChange={handleChange} />
+                <input type="date" hidden name=""/>
+              </LocalizationProvider> */}
+
+
+            </ButtonGroup>
+            <Button
+              variant="contained"
+              sx={{ fontSize: "18px", height: "2%" }}
+              onClick={handleSubmit}
+            >
+              Post{" "}
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+    </>
+  );
 }
 
 export default Add;

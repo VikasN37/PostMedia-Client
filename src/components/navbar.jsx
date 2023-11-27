@@ -50,30 +50,32 @@ function Navbar() {
             <InputBase placeholder="Search..." color='error'></InputBase>
           </Box>
 
-          <Box sx={{ display: "flex", gap: "20px" }}>
+          <Box sx={{ display: "flex", gap: "20px", marginRight: '2px' }}>
             <Badge badgeContent={4} color="error">
               <MailIcon color="white" />
             </Badge>
             <Badge badgeContent={2} color="error">
               <NotificationsIcon color="white" />
             </Badge>
+            <Box sx={{ display: 'flex', direction: 'row', gap: '15px' }}>
+              <Avatar
+                alt="Remy Sharp"
+                src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&w=1000&q=80"
+                sx={{
+                  height: "30px", width: "30px", "&:hover": {
+                    cursor: 'pointer'
 
-            <Avatar
-              alt="Remy Sharp"
-              src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&w=1000&q=80"
-              sx={{
-                height: "30px", width: "30px", "&:hover": {
-                  cursor: 'pointer'
+                  }
+                }}
+                onClick={() => {
+                  setOpen(true);
+                }}
+              />
+              <Typography variant="h6">User</Typography>
 
-                }
-              }}
-              onClick={() => {
-                setOpen(true);
-              }}
-            />
-
-
+            </Box>
           </Box>
+
 
           {/* menu */}
 
@@ -91,7 +93,7 @@ function Navbar() {
               horizontal: "left",
             }}
           >
-            <MenuItem onClose={handleClose}>Profile</MenuItem>
+            <MenuItem onClose={handleClose} >Profile</MenuItem>
             <MenuItem onClose={handleClose}>My account</MenuItem>
             <MenuItem onClose={handleClose}>Logout</MenuItem>
           </Menu>
