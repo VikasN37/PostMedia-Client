@@ -15,6 +15,12 @@ import safe from "../../assets/safe.png";
 import features from "../../assets/features.png";
 import thumbsup from "../../assets/thumbsup.png";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import message from "../../assets/message.ico";
+import github from "../../assets/github-icon.ico";
+import linkedin from "../../assets/linkedin-icon.ico";
+import { Link, NavLink } from "react-router-dom";
+
+// Get started Button , footer buttons , Register button down has issue
 
 const itemData = [
   {
@@ -25,20 +31,12 @@ const itemData = [
     img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
     title: "Coffee",
   },
-
-  // {
-  //   img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
-  //   title: "Tomato basil",
-  // },
-  // {
-  //   img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
-  //   title: "Sea star",
-  // },
 ];
 
 function LandingPage() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
+  const down400 = useMediaQuery("(max-width:400px)");
   return (
     <Grid
       container
@@ -66,14 +64,37 @@ function LandingPage() {
 
         <Box item className={classes.buttonSection}>
           <Button variant="contained" className={classes.navButtons}>
-            About Us
+            <NavLink
+              to="login"
+              style={() => ({
+                color: "white",
+                textDecoration: "none",
+              })}
+            >
+              About Us
+            </NavLink>
           </Button>
           <Button variant="contained" className={classes.navButtons}>
-            Login{" "}
+            <NavLink
+              to="login"
+              style={() => ({
+                color: "white",
+                textDecoration: "none",
+              })}
+            >
+              Login
+            </NavLink>
           </Button>
           <Button variant="contained" className={classes.navButtons}>
-            {" "}
-            Join Now{" "}
+            <NavLink
+              to="signup"
+              style={() => ({
+                color: "white",
+                textDecoration: "none",
+              })}
+            >
+              Join Now{" "}
+            </NavLink>
           </Button>
         </Box>
       </Grid>
@@ -153,14 +174,22 @@ function LandingPage() {
 
       {/* Why choose us */}
 
-      <Grid container item height={"500px"} justifyContent={"space-around"}>
-        <Grid item container justifyContent={"center"} marginBottom={"3vh"}>
-          <Typography variant="h4" gutterBottom>
-            <b>
-              <u>Why choose us</u>
-            </b>
-          </Typography>
-        </Grid>
+      <Grid item container justifyContent={"center"} marginTop={"2vh"}>
+        <Typography
+          fontSize={"clamp(15px, 10px + 1vw + 0.8vh , 30px)"}
+          gutterBottom
+        >
+          <b>Why choose us</b>
+        </Typography>
+      </Grid>
+      <Grid
+        container
+        item
+        height={down400 ? "500px" : "400px"}
+        overflow={"auto"}
+        justifyContent={"space-evenly"}
+        width={"100%"}
+      >
         <Grid item className={classes.cardContainer}>
           <Card
             sx={{
@@ -179,7 +208,7 @@ function LandingPage() {
               <Typography
                 gutterBottom
                 sx={{
-                  fontSize: "clamp(14px, 9px + 1vw + 1vh, 32px)",
+                  fontSize: "clamp(10px, 8px + 1vw + 1vh, 30px)",
                   fontWeight: "600",
                 }}
                 textAlign={"center"}
@@ -187,12 +216,12 @@ function LandingPage() {
                 Safe and Secure
               </Typography>
               <Typography
-                variant="h6"
+                fontSize={"clamp(8px , 5px + 2vw + 1vh , 20px )"}
                 color="text.primary"
                 textAlign={"center"}
               >
                 PostMedia is 100% safe and secure to use. Only you can see your
-                photos after authentication
+                photos
               </Typography>
             </CardContent>
           </Card>
@@ -210,7 +239,7 @@ function LandingPage() {
               <Typography
                 gutterBottom
                 sx={{
-                  fontSize: "clamp(14px, 9px + 1vw + 1vh, 32px)",
+                  fontSize: "clamp(10px, 8px + 1vw + 1vh, 30px)",
                   fontWeight: "600",
                 }}
                 textAlign={"center"}
@@ -218,7 +247,7 @@ function LandingPage() {
                 Features
               </Typography>
               <Typography
-                variant="h6"
+                fontSize={"clamp(8px , 5px + 2vw + 1vh , 20px )"}
                 color="text.primary"
                 textAlign={"center"}
               >
@@ -241,7 +270,7 @@ function LandingPage() {
               <Typography
                 gutterBottom
                 sx={{
-                  fontSize: "clamp(14px, 9px + 1vw + 1vh, 32px)",
+                  fontSize: "clamp(10px, 8px + 1vw + 1vh, 30px)",
                   fontWeight: "600",
                 }}
                 textAlign={"center"}
@@ -249,15 +278,97 @@ function LandingPage() {
                 No ads
               </Typography>
               <Typography
-                variant="h6"
+                fontSize={"clamp(8px , 5px + 2vw + 1vh , 20px )"}
                 color="text.primary"
                 textAlign={"center"}
               >
                 PostMedia believes in zero disturbance. This is the reason there
-                are no ads or pop up
+                are no ads
               </Typography>
             </CardContent>
           </Card>
+        </Grid>
+      </Grid>
+
+      {/* footer */}
+
+      <Grid
+        container
+        className={classes.footer}
+        width={"100%"}
+        flexDirection={down400 ? "column" : "row"}
+        bgcolor="#0F1521"
+      >
+        <Grid
+          item
+          container
+          width={down400 ? "100%" : "50%"}
+          height={"100%"}
+          flexDirection={"column"}
+          marginBottom={"16px"}
+          className={classes.container}
+        >
+          <Grid item className={classes.footerHeading} marginBottom={"12px"}>
+            PostMedia
+          </Grid>
+          <Grid
+            item
+            className={classes.footerContent}
+            justifyContent={"center"}
+          >
+            <Typography fontSize={"clamp(13px, 8px + 1vw, 20px)"}>
+              With intuitive navigation and high-definition visuals, our app
+              brings the gallery experience right to your device. Elevate your
+              appreciation for art anytime, anywhere.{" "}
+              <a href="/signup" color="white">
+                Register Now
+              </a>
+            </Typography>
+          </Grid>
+        </Grid>
+
+        <Grid
+          item
+          container
+          width={down400 ? "100%" : "50%"}
+          height={"100%"}
+          flexDirection={"column"}
+          className={classes.container}
+        >
+          <Grid item className={classes.footerHeading} marginBottom={"12px"}>
+            {" "}
+            About{" "}
+          </Grid>
+          <Grid item className={classes.footerContent}>
+            <Typography fontSize={"clamp(13px, 8px + 1vw, 20px)"}>
+              I am a passionate web developer committed to create website that
+              are seamless, intuitive and that resonate with our clients&apos;
+              visions. You can connect with me on different platforms.
+            </Typography>
+          </Grid>
+          <Grid
+            item
+            container
+            className={classes.iconsContainer}
+            justifyContent={"space-evenly"}
+          >
+            <Grid item width={"25%"}>
+              <Link>
+                <img alt="gmail" src={message} className={classes.icons} />
+              </Link>
+            </Grid>
+            <Grid item width={"25%"}>
+              <Link>
+                <img alt="github" src={github} className={classes.icons} />
+              </Link>
+            </Grid>
+
+            <Grid item width={"25%"}>
+              <Link to={{ pathname: "https://linkedin.com/" }}>
+                <img alt="linkedin" src={linkedin} className={classes.icons} />
+              </Link>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
