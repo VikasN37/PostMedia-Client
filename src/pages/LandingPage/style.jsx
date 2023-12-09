@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme) => ({
   page: {
     gap: "3vh",
-    width: "100vh",
   },
 
   navbar: {
@@ -41,7 +40,7 @@ export const useStyles = makeStyles((theme) => ({
   navButtons: {
     padding: "5px",
     width: "25%",
-    color: "white",
+    color: "theme.palette.primary.contrastText",
     backgroundColor: theme.palette.primary.main,
     fontSize: "clamp(13px , 10px + 0.5vw + 0.5vh , 20px )",
     border: "none",
@@ -72,7 +71,7 @@ export const useStyles = makeStyles((theme) => ({
 
   button: {
     fontSize: "clamp(12px , 10px + 1vw + 0.5vh , 20px )",
-    color: "white",
+    color: "theme.palette.primary.contrastText",
     backgroundColor: theme.palette.primary.main,
     padding: "clamp(6px , 4px + 1vw , 10px )",
     textTransform: "none",
@@ -99,7 +98,7 @@ export const useStyles = makeStyles((theme) => ({
 
   footer: {
     padding: "clamp(20px, 15px + 1vw, 30px)",
-    color: "white",
+    color: "theme.palette.primary.contrastText",
     overflow: "auto",
   },
   footerHeading: {

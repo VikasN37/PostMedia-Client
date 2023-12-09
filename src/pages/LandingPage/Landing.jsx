@@ -67,7 +67,7 @@ function LandingPage() {
             <NavLink
               to="login"
               style={() => ({
-                color: "white",
+                color: "theme.palette.primary.contrastText",
                 textDecoration: "none",
               })}
             >
@@ -78,7 +78,7 @@ function LandingPage() {
             <NavLink
               to="login"
               style={() => ({
-                color: "white",
+                color: "theme.palette.primary.contrastText",
                 textDecoration: "none",
               })}
             >
@@ -89,7 +89,7 @@ function LandingPage() {
             <NavLink
               to="signup"
               style={() => ({
-                color: "white",
+                color: "theme.palette.primary.contrastText",
                 textDecoration: "none",
               })}
             >
@@ -320,7 +320,7 @@ function LandingPage() {
               With intuitive navigation and high-definition visuals, our app
               brings the gallery experience right to your device. Elevate your
               appreciation for art anytime, anywhere.{" "}
-              <a href="/signup" color="white">
+              <a href="/signup" color="theme.palette.primary.contrastText">
                 Register Now
               </a>
             </Typography>

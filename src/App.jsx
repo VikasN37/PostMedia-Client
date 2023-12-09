@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import Homepage from "./pages/Home";
 import SignUpPage from "./pages/Signup";
 import { NotFoundPage } from "./pages/NotFound/NotFound";
 import LoginPage from "./pages/Login/Login";
 import LandingPage from "./pages/LandingPage/Landing";
+import Homepage from "./pages/Homepage/Home";
 
 function App() {
   return (

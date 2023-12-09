@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     fontSize: "clamp(14px , 10px + 0.5vw + 0.5vh , 25px)",
     backgroundColor: theme.palette.primary.main,
-    color: "white",
+    color: "theme.palette.primary.contrastText",
     [theme.breakpoints.down(280)]: {
       justifyContent: "flex-start",
     },
@@ -48,7 +48,7 @@ export const useStyles = makeStyles((theme) => ({
     height: "clamp(24px , 12px + 1vw + 2vh , 48px)",
     fontSize: "clamp(14px , 7px + 0.7vw + 0.3vh , 20px)",
     backgroundColor: theme.palette.primary.main,
-    color: "white",
+    color: "theme.palette.primary.contrastText",
     border: "none",
     cursor: "pointer",
   },
