@@ -100,9 +100,8 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "inherit",
   },
   divider: {
-    color: "black",
     backgroundColor: theme.palette.primary.main,
-    height: "1px",
+    height: "1.5px",
     marginBottom: "clamp(3px, 1px + 1.2vh, 10px)",
     width: "80%",
   },

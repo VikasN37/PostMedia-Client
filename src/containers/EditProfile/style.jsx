@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme) => ({
   listContainer: {
     width: "100%",
     height: "80%",
-    gap: "1vh",
+    gap: "2vh",
     [theme.breakpoints.down(300)]: {
       height: "75%",
     },
@@ -20,8 +20,6 @@ export const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     height: "50px",
     display: "flex",
-    cursor: "pointer",
-    border: "1px solid gray",
     fontSize: "clamp(14px, 12px + 1vw, 21px)",
     alignItems: "center",
     padding: "0px 8px",
@@ -32,5 +30,29 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down(400)]: {
       height: "40px",
     },
+  },
+  buttonContainer: {
+    width: "60%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  backButton: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: "10px",
+    border: `1px solid ${theme.palette.primary.main}`,
+    padding: "6px",
+    [theme.breakpoints.down(700)]: {
+      width: "70%",
+    },
+  },
+  backButtonContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  uploadButton: {
+    width: "50%",
   },
 }));
