@@ -35,7 +35,7 @@ function PostCard() {
       <CardMedia
         component="img"
         className={classes.cardMedia}
-        image="https://picsum.photos/250/300"
+        image="https://picsum.photos/250/200"
         alt="Paella dish"
       />
       <CardContent className={classes.content}>

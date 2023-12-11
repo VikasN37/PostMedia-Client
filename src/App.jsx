@@ -4,6 +4,10 @@ import { NotFoundPage } from "./pages/NotFound/NotFound";
 import LoginPage from "./pages/Login/Login";
 import LandingPage from "./pages/LandingPage/Landing";
 import Homepage from "./pages/Homepage/Home";
+import AllPosts from "./containers/AllPosts/AllPosts";
+import Settings from "./containers/SettingsSection/SettingsSection";
+import AddPosts from "./containers/AddPosts/AddPosts";
+import LikedPosts from "./containers/LikedPosts/LikedPosts";
 
 function App() {
   return (
@@ -12,7 +16,12 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignUpPage />} />
-        <Route path="app" element={<Homepage />} />
+        <Route path="home" element={<Homepage />}>
+          <Route index path="all" element={<AllPosts />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="add" element={<AddPosts />} />
+          <Route path="liked" element={<LikedPosts />} />
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

@@ -52,7 +52,7 @@ function SideBar() {
         justifyContent="center"
         alignItems="center"
       >
-        <NavLink to="/app" className={classes.buttons}>
+        <NavLink to="all" className={classes.buttons}>
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>30</Box>
           </Box>

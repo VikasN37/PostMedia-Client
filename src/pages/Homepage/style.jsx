@@ -40,20 +40,4 @@ export const useStyles = makeStyles((theme) => ({
       position: "absolute",
     },
   },
-  cardContainer: {
-    marginTop: "8px",
-    height: "auto",
-    width: "60%",
-    [theme.breakpoints.down(1100)]: {
-      width: "75%",
-      justifyContent: "center",
-    },
-    [theme.breakpoints.down(700)]: {
-      width: "85%",
-    },
-    [theme.breakpoints.down(560)]: {
-      width: "90%",
-      justifyContent: "center",
-    },
-  },
 }));

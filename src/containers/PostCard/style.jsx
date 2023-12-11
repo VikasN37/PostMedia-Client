@@ -21,17 +21,8 @@ export const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down(1100)]: {
         height: "70%",
       },
-      [theme.breakpoints.down(700)]: {
-        //    height: "150px",
-      },
     },
-    [theme.breakpoints.down(600)]: {
-      //  height: "380px",
-      //  minWidth: "160px",
-    },
-    [theme.breakpoints.down(300)]: {
-      //  height: "330px",
-    },
+
     "& .MuiCardContent-root": {
       padding: "0px 0px 0px 5px",
       marginBottom: "2%",

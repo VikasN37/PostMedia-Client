@@ -1,9 +1,9 @@
-import { Box, Grid, useMediaQuery } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import { useStyles } from "./style";
 import NavBar from "../../containers/NavBar/NavBar";
 import SideBar from "../../containers/SideBar/Sidebar";
 import { useState } from "react";
-import PostCard from "../../containers/PostCard/PostCard";
+import { Outlet } from "react-router-dom";
 
 function Homepage() {
   const classes = useStyles();
@@ -29,18 +29,7 @@ function Homepage() {
           className={classes.contentBar}
           alignItems={"center"}
         >
-          <Box className={classes.cardContainer}>
-            <PostCard />
-          </Box>
-          <Box className={classes.cardContainer}>
-            <PostCard />
-          </Box>
-          <Box className={classes.cardContainer}>
-            <PostCard />
-          </Box>
-          <Box className={classes.cardContainer}>
-            <PostCard />
-          </Box>
+          <Outlet />
         </Grid>
       </Grid>
     </Grid>
