@@ -30,7 +30,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   button: {
     fontSize: "clamp(12px , 10px + 0.5vw + 0.5vh , 18px )",
-    color: "theme.palette.primary.contrastText",
+    color: theme.palette.primary.contrastText,
     padding: "clamp(6px , 4px + 1vw , 10px )",
     height: "100%",
 

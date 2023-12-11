@@ -16,8 +16,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
-function NavBar() {
+function NavBar({ openDrawer, setOpenDrawer }) {
   const classes = useStyles();
+  console.log(openDrawer, "in navBar");
   const [open, setOpen] = useState(false);
   const down700 = useMediaQuery("(max-width:700px)");
   return (
@@ -29,7 +30,9 @@ function NavBar() {
     >
       <Grid item className={classes.logo}>
         {down700 ? (
-          <MenuIcon />
+          <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
+            <MenuIcon />
+          </IconButton>
         ) : (
           <>
             <Box display={"inline"} marginTop={"8px"}>
