@@ -5,7 +5,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   navBar: {
     width: "100%",
-    height: "10%",
   },
   appLayout: {
     height: "88%",
@@ -14,9 +13,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   sideBar: {
     width: "30%",
-    // height: "85%",
     minHeight: "350px",
-    overflow: "auto",
     [theme.breakpoints.down(700)]: {
       display: "none",
     },
@@ -26,7 +23,7 @@ export const useStyles = makeStyles((theme) => ({
     zIndex: 2,
     backgroundColor: "white",
     [theme.breakpoints.down(700)]: {
-      width: "40%",
+      width: "50%",
     },
     [theme.breakpoints.down(400)]: {
       width: "100%",
@@ -36,6 +33,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "65%",
     height: "100%",
     overflow: "auto",
+    gap: "14px",
     justifyContent: "flex-start",
     [theme.breakpoints.down(700)]: {
       justifyContent: "center",
@@ -43,15 +41,19 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   cardContainer: {
-    marginTop: "max(1vh,1vw)",
-    height: "80%",
+    marginTop: "8px",
+    height: "auto",
     width: "60%",
-    border: "1px solid black",
-    [theme.breakpoints.down(700)]: {
-      width: "95%",
+    [theme.breakpoints.down(1100)]: {
+      width: "75%",
       justifyContent: "center",
-      // height: "70%",
-      // position: "absolute",
+    },
+    [theme.breakpoints.down(700)]: {
+      width: "85%",
+    },
+    [theme.breakpoints.down(560)]: {
+      width: "90%",
+      justifyContent: "center",
     },
   },
 }));

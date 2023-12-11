@@ -3,9 +3,12 @@ import { Box, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useStyles } from "./style";
+import AddIcon from "@mui/icons-material/Add";
 
 function SideBar() {
   const classes = useStyles();
+  const profilePhoto = "https://picsum.photos/200/300";
+
   return (
     <Grid
       container
@@ -23,7 +26,11 @@ function SideBar() {
         className={classes.profilePart}
         gap={1.5}
       >
-        <Grid item className={classes.profilePhoto}></Grid>
+        <Grid
+          item
+          className={classes.profilePhoto}
+          sx={{ backgroundImage: `url(${profilePhoto})` }}
+        ></Grid>
 
         <Grid
           container
@@ -45,19 +52,29 @@ function SideBar() {
         justifyContent="center"
         alignItems="center"
       >
-        <NavLink to="games" className={classes.buttons}>
+        <NavLink to="/app" className={classes.buttons}>
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>30</Box>
           </Box>
           <Box className={classes.btnText}>All Posts</Box>
         </NavLink>
-        <NavLink to="friends" className={classes.buttons}>
+        <NavLink to="liked" className={classes.buttons}>
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>10</Box>
           </Box>
           <Box className={classes.btnText}>Liked</Box>
         </NavLink>
-        <NavLink to="groups" className={classes.buttons}>
+        <NavLink to="add" className={classes.buttons}>
+          <Box className={classes.btnCount}>
+            <Box className={classes.btnCountText}>
+              <AddIcon
+                sx={{ fontSize: "clamp(14px, 12px + 1vw + 0.3vh, 24px)" }}
+              />
+            </Box>
+          </Box>
+          <Box className={classes.btnText}>Add Post</Box>
+        </NavLink>
+        <NavLink to="settings" className={classes.buttons}>
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>
               <SettingsIcon

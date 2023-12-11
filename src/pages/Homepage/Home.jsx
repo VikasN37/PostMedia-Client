@@ -3,6 +3,7 @@ import { useStyles } from "./style";
 import NavBar from "../../containers/NavBar/NavBar";
 import SideBar from "../../containers/SideBar/Sidebar";
 import { useState } from "react";
+import PostCard from "../../containers/PostCard/PostCard";
 
 function Homepage() {
   const classes = useStyles();
@@ -26,13 +27,20 @@ function Homepage() {
           item
           width={down700 ? "100%" : "65%"}
           className={classes.contentBar}
-          // justifyContent="center"
           alignItems={"center"}
         >
-          <Box className={classes.cardContainer}></Box>
-          <Box className={classes.cardContainer}></Box>
-          <Box className={classes.cardContainer}></Box>
-          <Box className={classes.cardContainer}></Box>
+          <Box className={classes.cardContainer}>
+            <PostCard />
+          </Box>
+          <Box className={classes.cardContainer}>
+            <PostCard />
+          </Box>
+          <Box className={classes.cardContainer}>
+            <PostCard />
+          </Box>
+          <Box className={classes.cardContainer}>
+            <PostCard />
+          </Box>
         </Grid>
       </Grid>
     </Grid>

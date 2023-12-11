@@ -61,11 +61,13 @@ export const useStyles = makeStyles((theme) => ({
     gap: "clamp(5px, 2px + 2.5vh, 20px)",
     display: "flex",
     justifyContent: "center",
+    color: "black",
     width: "80%",
     border: `1px solid ${theme.palette.primary.main}`,
     fontWeight: "400",
     "&.active": {
-      backgroundColor: "red",
+      backgroundColor: theme.palette.primary.main,
+      color: "white",
     },
     [theme.breakpoints.down("md")]: {
       fontWeight: "300",
