@@ -15,7 +15,7 @@ import { useStyles } from "./style";
 function PostCard() {
   const classes = useStyles();
   return (
-    <Card className={classes.card} elevation={5}>
+    <Card className={classes.card} elevation={3}>
       <CardHeader
         title="Location"
         subheader="Date"

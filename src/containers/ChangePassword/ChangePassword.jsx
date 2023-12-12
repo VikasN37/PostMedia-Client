@@ -2,7 +2,6 @@ import { Box, Grid, TextField, Typography, useMediaQuery } from "@mui/material";
 import { useStyles } from "./style";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Button } from "@material-ui/core";
-import theme from "../../themes/theme";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
@@ -38,18 +37,7 @@ function ChangePassword() {
               variant="outlined"
               placeholder="Current Password"
               fullWidth
-              sx={{
-                "& .MuiOutlinedInput-input": {
-                  fontSize: "clamp(12px, 10px + 1vw, 17px)",
-                  padding: "2px",
-                  height: "45px",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  [theme.breakpoints.down(350)]: {
-                    height: "30px",
-                  },
-                },
-              }}
+              className={classes.textfield}
             />
           </Box>
         </Grid>
@@ -61,18 +49,7 @@ function ChangePassword() {
               variant="outlined"
               placeholder="New Password"
               fullWidth
-              sx={{
-                "& .MuiOutlinedInput-input": {
-                  fontSize: "clamp(12px, 10px + 1vw, 17px)",
-                  padding: "2px",
-                  height: "45px",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  [theme.breakpoints.down(350)]: {
-                    height: "30px",
-                  },
-                },
-              }}
+              className={classes.textfield}
             />
           </Box>
         </Grid>
@@ -84,18 +61,7 @@ function ChangePassword() {
               variant="outlined"
               placeholder="Confirm Password"
               fullWidth
-              sx={{
-                "& .MuiOutlinedInput-input": {
-                  fontSize: "clamp(12px, 10px + 1vw, 17px)",
-                  padding: "2px",
-                  height: "45px",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  [theme.breakpoints.down(350)]: {
-                    height: "30px",
-                  },
-                },
-              }}
+              className={classes.textfield}
             />
           </Box>
         </Grid>

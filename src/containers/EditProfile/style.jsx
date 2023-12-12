@@ -55,4 +55,16 @@ export const useStyles = makeStyles((theme) => ({
   uploadButton: {
     width: "50%",
   },
+  textfield: {
+    "& .MuiOutlinedInput-input": {
+      fontSize: "clamp(12px, 10px + 1vw, 17px)",
+      padding: "5px",
+      height: "40px",
+      justifyContent: "center",
+      alignItems: "center",
+      [theme.breakpoints.down(350)]: {
+        height: "30px",
+      },
+    },
+  },
 }));

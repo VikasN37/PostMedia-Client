@@ -3,7 +3,6 @@ import { useStyles } from "./style";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Button } from "@material-ui/core";
-import theme from "../../themes/theme";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
@@ -32,7 +31,7 @@ function EditProfile() {
         justifyContent={"flex-start"}
         alignItems={down700 ? "center" : "flex-start"}
       >
-        <Grid item to={"edit"} className={classes.listItem}>
+        <Grid item className={classes.listItem}>
           <Box>New Profile Photo</Box>
           <Box className={classes.uploadButton}>
             <Button
@@ -62,18 +61,7 @@ function EditProfile() {
               variant="outlined"
               placeholder="Enter Username"
               fullWidth
-              sx={{
-                "& .MuiOutlinedInput-input": {
-                  fontSize: "clamp(12px, 10px + 1vw, 17px)",
-                  padding: "2px",
-                  height: "45px",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  [theme.breakpoints.down(350)]: {
-                    height: "30px",
-                  },
-                },
-              }}
+              className={classes.textfield}
             />
           </Box>
         </Grid>

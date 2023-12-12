@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignUpPage from "./pages/Signup";
 import { NotFoundPage } from "./pages/NotFound/NotFound";
 import LoginPage from "./pages/Login/Login";
 import LandingPage from "./pages/LandingPage/Landing";
@@ -10,6 +9,7 @@ import AddPosts from "./containers/AddPosts/AddPosts";
 import LikedPosts from "./containers/LikedPosts/LikedPosts";
 import EditProfile from "./containers/EditProfile/EditProfile";
 import ChangePassword from "./containers/ChangePassword/ChangePassword";
+import SignupPage from "./pages/SignupPage/Signup";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="signup" element={<SignUpPage />} />
+        <Route path="signup" element={<SignupPage />} />
         <Route path="home" element={<Homepage />}>
           <Route index path="all" element={<AllPosts />} />
           <Route path="settings" element={<Settings />} />

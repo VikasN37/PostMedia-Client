@@ -3,6 +3,7 @@ export const useStyles = makeStyles((theme) => ({
   outletContainer: {
     width: "100%",
     height: "100%",
+    gap: "2.5vh",
     [theme.breakpoints.down(700)]: {
       justifyContent: "center",
     },
