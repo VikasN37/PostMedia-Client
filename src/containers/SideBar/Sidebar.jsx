@@ -1,4 +1,4 @@
-import { Divider } from "@material-ui/core";
+import { Divider, useMediaQuery } from "@material-ui/core";
 import { Box, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -8,12 +8,12 @@ import AddIcon from "@mui/icons-material/Add";
 function SideBar() {
   const classes = useStyles();
   const profilePhoto = "https://picsum.photos/200/300";
-
+  const down700 = useMediaQuery("(max-width:700px)");
   return (
     <Grid
       container
       flexDirection="column"
-      justifyContent="center"
+      justifyContent={down700 ? "flex-start" : "center"}
       alignItems="center"
       className={classes.profileSection}
     >

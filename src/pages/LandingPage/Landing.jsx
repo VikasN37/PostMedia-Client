@@ -19,16 +19,18 @@ import message from "../../assets/message.ico";
 import github from "../../assets/github-icon.ico";
 import linkedin from "../../assets/linkedin-icon.ico";
 import { Link, NavLink } from "react-router-dom";
+import pic1 from "../../assets/pic1.jpeg";
+import pic2 from "../../assets/pic2.avif";
 
 // Get started Button , footer buttons , Register button down has issue
 
 const itemData = [
   {
-    img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
+    img: `${pic1}`,
     title: "Camera",
   },
   {
-    img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
+    img: `${pic2}`,
     title: "Coffee",
   },
 ];
@@ -46,56 +48,24 @@ function LandingPage() {
     >
       <Grid container item className={classes.navbar}>
         <Grid item className={classes.logo}>
-          <Typography
-            fontSize={"clamp(16px , 15px + 1vw , 24px)"}
-            fontWeight={"500"}
-          >
-            <CameraAltIcon
-              fontSize="28px"
-              sx={(theme) => ({
-                [theme.breakpoints.down(600)]: {
-                  display: "none",
-                },
-              })}
-            />{" "}
-            PostMedia
-          </Typography>
+          <Box display={"inline"} marginTop={"8px"}>
+            <CameraAltIcon />
+          </Box>
+          <Box display={"inline"}>PostMedia</Box>
         </Grid>
 
         <Box item className={classes.buttonSection}>
-          <Button variant="contained" className={classes.navButtons}>
-            <NavLink
-              to="login"
-              style={() => ({
-                color: "white",
-                textDecoration: "none",
-              })}
-            >
-              About Us
-            </NavLink>
-          </Button>
-          <Button variant="contained" className={classes.navButtons}>
-            <NavLink
-              to="login"
-              style={() => ({
-                color: "white",
-                textDecoration: "none",
-              })}
-            >
-              Login
-            </NavLink>
-          </Button>
-          <Button variant="contained" className={classes.navButtons}>
-            <NavLink
-              to="signup"
-              style={() => ({
-                color: `white`,
-                textDecoration: "none",
-              })}
-            >
-              Join Now{" "}
-            </NavLink>
-          </Button>
+          <NavLink to={"#about"} className={classes.navButtons}>
+            <Box>About</Box>
+          </NavLink>
+
+          <NavLink to="login" className={classes.navButtons}>
+            <Box>Login</Box>
+          </NavLink>
+
+          <NavLink to="signup" className={classes.navButtons}>
+            <Box>Join Now</Box>
+          </NavLink>
         </Box>
       </Grid>
 
@@ -137,7 +107,11 @@ function LandingPage() {
               >
                 A perfect app to save your memories as photos
               </Typography>
-              <Button className={classes.button}>Get Started</Button>
+              <NavLink to={"signup"}>
+                <Button variant="contained" className={classes.button}>
+                  Get Started
+                </Button>
+              </NavLink>
             </Box>
           </Grid>
 
@@ -152,11 +126,7 @@ function LandingPage() {
           >
             {/* <Grid item className={classes.topPhoto}></Grid> */}
 
-            <ImageList
-              sx={{ width: "100%", height: "60%" }}
-              cols={2}
-              rowHeight={"100%"}
-            >
+            <ImageList sx={{ width: "100%" }} cols={2} rowHeight={"100%"}>
               {itemData.map((item) => (
                 <ImageListItem key={item.img}>
                   <img

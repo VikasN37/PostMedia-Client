@@ -10,6 +10,10 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "10px",
+    [theme.breakpoints.down(430)]: {
+      justifyContent: "center",
+      gap: "7px",
+    },
   },
   icon: {
     [theme.breakpoints.down("sm")]: {
@@ -17,12 +21,12 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   logo: {
+    fontSize: "clamp(22px, 15px + 1vw + 0.4vh, 27px)",
+    fontWeight: 400,
+    display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
-    [theme.breakpoints.down(430)]: {
-      width: "100%",
-      textAlign: "center",
-      marginBottom: "10px",
-    },
+    gap: "10px",
   },
   buttonSection: {
     display: "flex",
@@ -38,13 +42,21 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   navButtons: {
-    padding: "5px",
-    width: "25%",
+    width: "20%",
+    height: "30px",
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
     fontSize: "clamp(13px , 10px + 0.5vw + 0.5vh , 20px )",
     border: "none",
     cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    textDecoration: "none",
+    [theme.breakpoints.down("sm")]: {
+      width: "27%",
+      height: "26px",
+    },
   },
 
   heroSection: {
@@ -70,10 +82,20 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   button: {
-    fontSize: "clamp(12px , 10px + 1vw + 0.5vh , 20px )",
+    fontSize: "clamp(13px , 10px + 0.5vw + 0.5vh , 20px )",
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    padding: "clamp(6px , 4px + 1vw , 10px )",
+    height: "40px",
+    cursor: "pointer",
+    width: "100%",
+    [theme.breakpoints.down(700)]: {
+      width: "55%",
+    },
+    [theme.breakpoints.down(400)]: {
+      width: "60%",
+      height: "30px",
+    },
+    // padding: "clamp(6px , 4px + 1vw , 10px )",
     textTransform: "none",
   },
 

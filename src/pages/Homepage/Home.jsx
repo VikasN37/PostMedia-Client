@@ -9,7 +9,7 @@ function Homepage() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
   const [openDrawer, setOpenDrawer] = useState(false);
-  console.log(openDrawer, "in homepage");
+
   return (
     <Grid container className={classes.page}>
       <Grid container item className={classes.navBar}>
@@ -18,7 +18,9 @@ function Homepage() {
       <Grid container item className={classes.appLayout}>
         <Grid
           item
-          className={openDrawer ? classes.hiddenSideBar : classes.sideBar}
+          className={
+            openDrawer && down700 ? classes.hiddenSideBar : classes.sideBar
+          }
         >
           <SideBar />
         </Grid>

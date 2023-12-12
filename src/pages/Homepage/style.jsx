@@ -20,6 +20,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   hiddenSideBar: {
     height: "100%",
+    minHeight: "350px",
     zIndex: 2,
     backgroundColor: "white",
     [theme.breakpoints.down(700)]: {

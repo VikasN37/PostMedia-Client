@@ -59,6 +59,7 @@ export const useStyles = makeStyles((theme) => ({
     "& .MuiOutlinedInput-input": {
       fontSize: "clamp(12px, 10px + 1vw, 17px)",
       padding: "5px",
+      width: "60%",
       height: "40px",
       justifyContent: "center",
       alignItems: "center",

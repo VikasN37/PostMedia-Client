@@ -89,7 +89,7 @@ function AddPosts() {
           </Button>
         </Grid>
         <NavLink
-          to={"/home/settings"}
+          to={"/home/all"}
           className={clsx(classes.listItem, classes.backButtonContainer)}
         >
           <Box className={classes.backButton}>

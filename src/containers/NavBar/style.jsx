@@ -16,6 +16,18 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     gap: "10px",
   },
+  textfield: {
+    "& .MuiOutlinedInput-input": {
+      fontSize: "clamp(12px, 10px + 1vw, 17px)",
+      padding: "5px",
+      height: "40px",
+      justifyContent: "center",
+      alignItems: "center",
+      [theme.breakpoints.down(350)]: {
+        height: "40px",
+      },
+    },
+  },
   searchbarContainer: {
     width: "35%",
     backgroundColor: theme.palette.primary.contrastText,
@@ -30,22 +42,7 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
-  textField: {
-    height: "90%",
-    padding: "4px",
-    "&::placeholder": {
-      color: theme.palette.primary.contrastText,
-      opacity: "0.8",
-      fontSize: "clamp(5px, 3px + 1vw, 20px)",
-    },
-    ".MuiInput-input": {
-      fontSize: "clamp(7px, 5px + 1vw, 20px)",
-    },
-  },
   icon: {
     color: "black",
-  },
-  menuItem: {
-    fontSize: "clamp(6px, 5px + 1vw, 18px)",
   },
 }));

@@ -16,9 +16,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 function NavBar({ openDrawer, setOpenDrawer }) {
   const classes = useStyles();
-  console.log(openDrawer, "in navBar");
+
   const [open, setOpen] = useState(false);
   const down700 = useMediaQuery("(max-width:700px)");
   return (
@@ -31,7 +32,12 @@ function NavBar({ openDrawer, setOpenDrawer }) {
       <Grid item className={classes.logo}>
         {down700 ? (
           <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-            <MenuIcon />
+            <MenuIcon
+              sx={{
+                color: "white",
+                fontSize: "clamp(18px, 15px + 1vw + 1vh, 28px)",
+              }}
+            />
           </IconButton>
         ) : (
           <>
@@ -52,7 +58,7 @@ function NavBar({ openDrawer, setOpenDrawer }) {
               <InputAdornment position="end">
                 <IconButton>
                   <SearchIcon
-                    sx={{ fontSize: "clamp(20px, 15px + 1vw, 30px)" }}
+                    sx={{ fontSize: "clamp(13px, 10px + 1vw, 30px)" }}
                   />
                 </IconButton>
               </InputAdornment>
@@ -72,7 +78,12 @@ function NavBar({ openDrawer, setOpenDrawer }) {
           }}
         >
           {down700 ? (
-            <MoreVertIcon sx={{ padding: "0px" }} />
+            <MoreVertIcon
+              sx={{
+                padding: "0px",
+                fontSize: "clamp(18px, 15px + 1vw + 1vh, 28px)",
+              }}
+            />
           ) : (
             "Manage Account"
           )}
