@@ -15,9 +15,6 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "clamp(14px , 10px + 0.5vw + 0.5vh , 25px)",
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
-    [theme.breakpoints.down(280)]: {
-      justifyContent: "flex-start",
-    },
   },
   formSection: {
     [theme.breakpoints.down("sm")]: {
@@ -27,20 +24,32 @@ export const useStyles = makeStyles((theme) => ({
       alignItems: "center",
     },
     flexDirection: "column",
+    overflow: "auto",
     justifyContent: "center",
   },
+
   form: {
     height: "40%",
     width: "60%",
+
+    gap: "20px",
     [theme.breakpoints.down("sm")]: {
-      height: "60%",
+      width: "70%",
     },
 
     justifyContent: "center",
   },
   textField: {
-    height: "clamp(12px , 10px + 5vw + 8vh , 80px)",
-    fontSize: "clamp(10px , 8px + 1vw , 20px)",
+    "& .MuiOutlinedInput-input": {
+      fontSize: "clamp(12px, 10px + 1vw, 17px)",
+      padding: "5px",
+      height: "40px",
+      justifyContent: "center",
+      alignItems: "center",
+      [theme.breakpoints.down(350)]: {
+        height: "30px",
+      },
+    },
   },
   button: {
     width: "100%",

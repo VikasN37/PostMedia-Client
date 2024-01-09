@@ -22,7 +22,7 @@ function Homepage() {
             openDrawer && down700 ? classes.hiddenSideBar : classes.sideBar
           }
         >
-          <SideBar />
+          <SideBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         </Grid>
         <Grid
           container

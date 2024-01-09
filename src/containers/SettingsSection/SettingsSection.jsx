@@ -8,6 +8,11 @@ import { NavLink } from "react-router-dom";
 function Settings() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
+  const handleDelete = () => {
+    let entered = prompt(
+      "Type 'DELETE' to confirm. This action is irreversible."
+    );
+  };
   return (
     <Grid container className={classes.outletContainer}>
       <Grid
@@ -55,7 +60,7 @@ function Settings() {
             />
           </Box>
         </Grid>
-        <Grid item className={classes.listItem}>
+        <Grid item className={classes.listItem} onClick={handleDelete}>
           Delete Account
           <Box>
             <DeleteIcon sx={{ fontSize: "clamp(16px, 13px + 1vw, 24px)" }} />

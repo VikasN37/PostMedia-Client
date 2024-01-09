@@ -55,9 +55,9 @@ function LandingPage() {
         </Grid>
 
         <Box item className={classes.buttonSection}>
-          <NavLink to={"#about"} className={classes.navButtons}>
+          <Link smooth to={"/#about"} className={classes.navButtons}>
             <Box>About</Box>
-          </NavLink>
+          </Link>
 
           <NavLink to="login" className={classes.navButtons}>
             <Box>Login</Box>
@@ -146,7 +146,7 @@ function LandingPage() {
 
       <Grid item container justifyContent={"center"} marginTop={"2vh"}>
         <Typography
-          fontSize={"clamp(15px, 10px + 1vw + 0.8vh , 30px)"}
+          fontSize={"clamp(13px, 10px + 0.8vw + 0.8vh , 26px)"}
           gutterBottom
         >
           <b>Why choose us</b>
@@ -164,21 +164,21 @@ function LandingPage() {
           <Card
             sx={{
               justifyContent: "center",
-              height: "100%",
+              height: "95%",
             }}
+            elevation={9}
           >
             <CardMedia
               component="img"
               className={classes.cardMedia}
               image={`${safe}`}
               sx={{ objectFit: "contain" }}
-              alt="green iguana"
             />
             <CardContent>
               <Typography
                 gutterBottom
                 sx={{
-                  fontSize: "clamp(10px, 8px + 1vw + 1vh, 30px)",
+                  fontSize: "clamp(10px, 8px + 0.7vw + 1vh, 25px)",
                   fontWeight: "600",
                 }}
                 textAlign={"center"}
@@ -186,7 +186,7 @@ function LandingPage() {
                 Safe and Secure
               </Typography>
               <Typography
-                fontSize={"clamp(8px , 5px + 2vw + 1vh , 20px )"}
+                fontSize={"clamp(8px , 5px + 1.4vw + 1vh , 19px )"}
                 color="text.primary"
                 textAlign={"center"}
               >
@@ -197,19 +197,18 @@ function LandingPage() {
           </Card>
         </Grid>
         <Grid item className={classes.cardContainer}>
-          <Card sx={{ justifyContent: "center", height: "100%" }}>
+          <Card sx={{ justifyContent: "center", height: "95%" }} elevation={9}>
             <CardMedia
               component="img"
               className={classes.cardMedia}
               image={`${features}`}
-              alt="green iguana"
               sx={{ objectFit: "contain" }}
             />
             <CardContent>
               <Typography
                 gutterBottom
                 sx={{
-                  fontSize: "clamp(10px, 8px + 1vw + 1vh, 30px)",
+                  fontSize: "clamp(10px, 8px + 0.7vw + 1vh, 25px)",
                   fontWeight: "600",
                 }}
                 textAlign={"center"}
@@ -217,7 +216,7 @@ function LandingPage() {
                 Features
               </Typography>
               <Typography
-                fontSize={"clamp(8px , 5px + 2vw + 1vh , 20px )"}
+                fontSize={"clamp(8px , 5px + 1.4vw + 1vh , 19px )"}
                 color="text.primary"
                 textAlign={"center"}
               >
@@ -228,11 +227,10 @@ function LandingPage() {
           </Card>
         </Grid>
         <Grid item className={classes.cardContainer}>
-          <Card sx={{ justifyContent: "center", height: "100%" }}>
+          <Card sx={{ justifyContent: "center", height: "95%" }} elevation={9}>
             <CardMedia
               component="img"
               image={`${thumbsup}`}
-              alt="green iguana"
               sx={{ objectFit: "contain" }}
               className={classes.cardMedia}
             />
@@ -240,7 +238,7 @@ function LandingPage() {
               <Typography
                 gutterBottom
                 sx={{
-                  fontSize: "clamp(10px, 8px + 1vw + 1vh, 30px)",
+                  fontSize: "clamp(10px, 8px + 0.7vw + 1vh, 25px)",
                   fontWeight: "600",
                 }}
                 textAlign={"center"}
@@ -248,7 +246,7 @@ function LandingPage() {
                 No ads
               </Typography>
               <Typography
-                fontSize={"clamp(8px , 5px + 2vw + 1vh , 20px )"}
+                fontSize={"clamp(8px , 5px + 1.4vw + 1vh , 19px )"}
                 color="text.primary"
                 textAlign={"center"}
               >
@@ -290,9 +288,7 @@ function LandingPage() {
               With intuitive navigation and high-definition visuals, our app
               brings the gallery experience right to your device. Elevate your
               appreciation for art anytime, anywhere.{" "}
-              <a href="/signup" color="white">
-                Register Now
-              </a>
+              <Link to="/signup">Register Now !</Link>
             </Typography>
           </Grid>
         </Grid>
@@ -323,18 +319,18 @@ function LandingPage() {
             justifyContent={"space-evenly"}
           >
             <Grid item width={"25%"}>
-              <Link>
+              <Link to="mailto:vikas630602@gmail.com">
                 <img alt="gmail" src={message} className={classes.icons} />
               </Link>
             </Grid>
             <Grid item width={"25%"}>
-              <Link>
+              <Link to="https://github.com/VikasN37">
                 <img alt="github" src={github} className={classes.icons} />
               </Link>
             </Grid>
 
             <Grid item width={"25%"}>
-              <Link to={{ pathname: "https://linkedin.com/" }}>
+              <Link to="www.linkedin.com/in/vikas-niranjan/">
                 <img alt="linkedin" src={linkedin} className={classes.icons} />
               </Link>
             </Grid>

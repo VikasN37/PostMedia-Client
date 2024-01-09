@@ -5,10 +5,15 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { useStyles } from "./style";
 import AddIcon from "@mui/icons-material/Add";
 
-function SideBar() {
+function SideBar({ openDrawer, setOpenDrawer }) {
   const classes = useStyles();
   const profilePhoto = "https://picsum.photos/200/300";
   const down700 = useMediaQuery("(max-width:700px)");
+
+  const handleClick = () => {
+    setOpenDrawer(!openDrawer);
+  };
+
   return (
     <Grid
       container
@@ -52,19 +57,19 @@ function SideBar() {
         justifyContent="center"
         alignItems="center"
       >
-        <NavLink to="all" className={classes.buttons}>
+        <NavLink to="all" className={classes.buttons} onClick={handleClick}>
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>30</Box>
           </Box>
           <Box className={classes.btnText}>All Posts</Box>
         </NavLink>
-        <NavLink to="liked" className={classes.buttons}>
+        <NavLink to="liked" className={classes.buttons} onClick={handleClick}>
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>10</Box>
           </Box>
           <Box className={classes.btnText}>Liked</Box>
         </NavLink>
-        <NavLink to="add" className={classes.buttons}>
+        <NavLink to="add" className={classes.buttons} onClick={handleClick}>
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>
               <AddIcon
@@ -74,7 +79,11 @@ function SideBar() {
           </Box>
           <Box className={classes.btnText}>Add Post</Box>
         </NavLink>
-        <NavLink to="settings" className={classes.buttons}>
+        <NavLink
+          to="settings"
+          className={classes.buttons}
+          onClick={handleClick}
+        >
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>
               <SettingsIcon

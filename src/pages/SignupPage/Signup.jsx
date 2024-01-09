@@ -1,11 +1,42 @@
-import { Grid, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  Grid,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Button } from "@mui/base";
 import { useStyles } from "./style";
+import { useState } from "react";
+import { useSignupMutation } from "../../../store";
 
 function SignupPage() {
   const classes = useStyles();
+  const [signupBody, setSignUpBody] = useState({});
+
+  const [signup, { isLoading, isSuccess, isError, error }] =
+    useSignupMutation();
+
+  function handleChange(e) {
+    setSignUpBody({ ...signupBody, [e.target.name]: e.target.value });
+  }
+
+  function handleClick(e) {
+    e.preventDefault();
+    console.log(signupBody);
+    signup(signupBody);
+  }
   return (
     <Grid container className={classes.page}>
+      {isSuccess && (
+        <Snackbar open={true}>
+          <Alert severity="success" sx={{ width: "100%" }}>
+            Welcome to PostMedia !
+          </Alert>
+        </Snackbar>
+      )}
       <Grid container item className={classes.content}>
         <Grid
           item
@@ -86,15 +117,39 @@ function SignupPage() {
           >
             <TextField
               variant="outlined"
-              placeholder="Enter Email"
+              placeholder="Enter Name"
               fullWidth
+              name="name"
+              onChange={handleChange}
               required
               className={classes.textField}
             />
 
             <TextField
               variant="outlined"
+              placeholder="Enter Username"
+              fullWidth
+              name="username"
+              onChange={handleChange}
+              required
+              className={classes.textField}
+            ></TextField>
+
+            <TextField
+              variant="outlined"
+              placeholder="Enter Email"
+              fullWidth
+              name="email"
+              onChange={handleChange}
+              required
+              className={classes.textField}
+            ></TextField>
+
+            <TextField
+              variant="outlined"
               placeholder="Enter password"
+              name="password"
+              onChange={handleChange}
               fullWidth
               required
               className={classes.textField}
@@ -102,31 +157,43 @@ function SignupPage() {
 
             <TextField
               variant="outlined"
-              placeholder="Confirm password"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              onChange={handleChange}
               fullWidth
               required
               className={classes.textField}
             ></TextField>
 
-            <TextField
-              variant="outlined"
-              placeholder="Enter Name"
-              fullWidth
-              required
-              className={classes.textField}
-            ></TextField>
-
-            <TextField
-              variant="outlined"
-              placeholder="Enter username"
-              fullWidth
-              required
-              className={classes.textField}
-            ></TextField>
-
-            <Button variant="contained" className={classes.button}>
-              Create Account
-            </Button>
+            {isLoading ? (
+              <Box display={"flex"} justifyContent={"center"}>
+                <CircularProgress />
+              </Box>
+            ) : (
+              <Button
+                variant="contained"
+                className={classes.button}
+                onClick={handleClick}
+              >
+                Create Account
+              </Button>
+            )}
+            {isError && (
+              <>
+                <Typography
+                  fontSize={"clamp(10px, 8px + 0.6vw + 0.5vh, 16px)"}
+                  color={"red"}
+                >
+                  *Username and Email should be unique
+                </Typography>
+                <Typography
+                  fontSize={"clamp(10px, 8px + 0.6vw + 0.5vh, 16px)"}
+                  color={"red"}
+                >
+                  *Password should have min 8 characters
+                </Typography>
+              </>
+            )}
             <Typography fontSize={"clamp(11px, 6px + 1vw, 17px)"}>
               Already have an account ?
               <b>

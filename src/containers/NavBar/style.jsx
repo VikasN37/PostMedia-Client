@@ -19,8 +19,8 @@ export const useStyles = makeStyles((theme) => ({
   textfield: {
     "& .MuiOutlinedInput-input": {
       fontSize: "clamp(12px, 10px + 1vw, 17px)",
-      padding: "5px",
       height: "40px",
+      padding: "10px",
       justifyContent: "center",
       alignItems: "center",
       [theme.breakpoints.down(350)]: {

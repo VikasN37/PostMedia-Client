@@ -85,6 +85,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "clamp(13px , 10px + 0.5vw + 0.5vh , 20px )",
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
+    border: "none",
     height: "40px",
     cursor: "pointer",
     width: "100%",

@@ -1,17 +1,55 @@
-import { Grid, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  Grid,
+  Snackbar,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { Button } from "@mui/base";
 import { useStyles } from "./style";
+import { useLoginMutation } from "../../../store";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function LoginPage() {
   const classes = useStyles();
+
+  const [loginBody, setLoginBody] = useState({});
+  const [login, { isError, data, isSuccess, isLoading }] = useLoginMutation();
+
+  console.log(data);
+
+  function handleChange(e) {
+    setLoginBody({ ...loginBody, [e.target.name]: e.target.value });
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(loginBody);
+    console.log(data);
+  };
+
+  const down400 = useMediaQuery("(max-width:400px)");
+  const down280 = useMediaQuery("(max-width:280px)");
   return (
     <Grid container className={classes.page}>
       <Grid container item className={classes.content}>
+        {isSuccess && (
+          <Snackbar open={true}>
+            <Alert severity="success" sx={{ width: "100%" }}>
+              Login Successful !
+            </Alert>
+          </Snackbar>
+        )}
         <Grid
           item
           container
           width={"40%"}
-          height={"100%"}
+          // height={"100%"}
           className={classes.sidebar}
           sx={(theme) => ({
             [theme.breakpoints.down("sm")]: {
@@ -20,8 +58,9 @@ function LoginPage() {
             },
           })}
         >
-          <Grid item width={"50%"}>
+          <Grid item width={down400 ? "80%" : "50%"} justifyContent={"center"}>
             <Typography
+              textAlign={"center"}
               sx={(theme) => ({
                 fontSize: "clamp(23px , 20px + 1vw , 35px)",
                 [theme.breakpoints.down("sm")]: {
@@ -35,7 +74,11 @@ function LoginPage() {
               Sign In to PostMedia{" "}
             </Typography>
 
-            <Typography fontSize={"clamp(15px , 12px + 1vw , 19px)"}>
+            <Typography
+              fontSize={"clamp(15px , 12px + 1vw , 19px)"}
+              textAlign={"center"}
+              sx={{ display: down280 ? "none" : "block" }}
+            >
               A personalized media galley app for all your photos !
             </Typography>
           </Grid>
@@ -53,33 +96,72 @@ function LoginPage() {
             },
           })}
         >
-          <Grid item className={classes.form}>
+          <Grid
+            container
+            item
+            className={classes.form}
+            width={down400 ? "85%" : "70%"}
+            height={"100%"}
+            flexDirection={"column"}
+            gap={"3vh"}
+            minHeight={"600px"}
+            justifyContent={"center"}
+            sx={(theme) => ({
+              [theme.breakpoints.down("sm")]: {
+                justifyContent: "flex-start",
+              },
+            })}
+          >
             <TextField
-              className={classes.textField}
               variant="outlined"
-              label="Enter Email"
+              placeholder="Enter Email"
               fullWidth
               required
+              name="email"
+              onChange={handleChange}
+              className={classes.textField}
             />
 
             <TextField
-              className={classes.textField}
               variant="outlined"
-              label="Password"
+              placeholder="Enter password"
               fullWidth
+              name="password"
+              onChange={handleChange}
               required
+              className={classes.textField}
             ></TextField>
-
-            <Typography variant="body1">Forgot Password ?</Typography>
-            <Button variant="contained" className={classes.button}>
-              LOG IN
-            </Button>
-            <Typography variant="body1">
-              Didn&apos;t have account ?
-              <b>
+            <Grid item>
+              <Typography fontSize={"clamp(10px, 8px + 1vw + 0.5vh, 16px)"}>
+                Forgot Password?
+                <a href="/signup"> Click to reset</a>
+              </Typography>
+              {isLoading ? (
+                <Box display={"flex"} justifyContent={"center"}>
+                  <CircularProgress />
+                </Box>
+              ) : (
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  onClick={handleClick}
+                >
+                  Login
+                </Button>
+              )}
+              {isError && (
+                <Typography
+                  fontSize={"clamp(10px, 8px + 1vw + 0.5vh, 16px)"}
+                  color={"red"}
+                >
+                  Incorrect Email or Password. Try again.
+                </Typography>
+              )}
+              <Typography fontSize={"clamp(10px, 8px + 1vw + 0.5vh, 16px)"}>
+                Didn&apos;t have the account ?
                 <a href="/signup"> Create Account</a>
-              </b>
-            </Typography>
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

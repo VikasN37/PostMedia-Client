@@ -20,6 +20,11 @@ import { useState } from "react";
 function NavBar({ openDrawer, setOpenDrawer }) {
   const classes = useStyles();
 
+  const handleDelete = () => {
+    let entered = prompt(
+      "Type 'DELETE' to confirm. This action is irreversible."
+    );
+  };
   const [open, setOpen] = useState(false);
   const down700 = useMediaQuery("(max-width:700px)");
   return (
@@ -58,13 +63,16 @@ function NavBar({ openDrawer, setOpenDrawer }) {
               <InputAdornment position="end">
                 <IconButton>
                   <SearchIcon
-                    sx={{ fontSize: "clamp(13px, 10px + 1vw, 30px)" }}
+                    sx={{
+                      fontSize: "clamp(13px, 10px + 1vw, 30px)",
+                      paddingLeft: "9px",
+                    }}
                   />
                 </IconButton>
               </InputAdornment>
             ),
-            className: classes.textField,
             disableUnderline: true,
+            className: classes.textField,
           }}
         />
       </Grid>
@@ -101,8 +109,14 @@ function NavBar({ openDrawer, setOpenDrawer }) {
           <MenuItem onClose={() => setOpen(false)} className={classes.menuItem}>
             Logout
           </MenuItem>
-          <MenuItem onClose={() => setOpen(false)}>Delete Account</MenuItem>
-          <MenuItem onClose={() => setOpen(false)}>Settings</MenuItem>
+          <MenuItem
+            onClose={() => {
+              setOpen(false);
+            }}
+            onClick={handleDelete}
+          >
+            Delete Account
+          </MenuItem>
         </Menu>
       </Grid>
     </Grid>
