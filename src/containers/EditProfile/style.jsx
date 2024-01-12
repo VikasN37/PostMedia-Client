@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   listItem: {
-    width: "60%",
+    width: "80%",
     color: "black",
     textDecoration: "none",
     height: "50px",
@@ -32,12 +32,13 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   buttonContainer: {
-    width: "60%",
+    width: "80%",
+
     display: "flex",
     justifyContent: "center",
   },
   backButton: {
-    width: "100%",
+    width: "40%",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -50,6 +51,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   backButtonContainer: {
     display: "flex",
+    width: "80%",
     justifyContent: "center",
   },
   uploadButton: {

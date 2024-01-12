@@ -10,28 +10,46 @@ import {
 } from "@mui/material";
 import { Button } from "@mui/base";
 import { useStyles } from "./style";
-import { useLoginMutation } from "../../../store";
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { setToken } from "../../apis/authSlice";
+import { useLoginMutation } from "../../apis/userApi";
 
 function LoginPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [loginBody, setLoginBody] = useState({});
   const [login, { isError, data, isSuccess, isLoading }] = useLoginMutation();
-
-  console.log(data);
 
   function handleChange(e) {
     setLoginBody({ ...loginBody, [e.target.name]: e.target.value });
   }
 
+  // const handleClick = useCallback(
+  //   (e) => {
+  //     e.preventDefault();
+  //     login(loginBody);
+  //   },
+  //   [login, loginBody]
+  // );
+
   const handleClick = (e) => {
     e.preventDefault();
+    console.log(loginBody);
     login(loginBody);
-    console.log(data);
+    // navigate("/home/all");
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setToken(data.data.token));
+      navigate("/home/all");
+    }
+  });
 
   const down400 = useMediaQuery("(max-width:400px)");
   const down280 = useMediaQuery("(max-width:280px)");
@@ -159,7 +177,7 @@ function LoginPage() {
               )}
               <Typography fontSize={"clamp(10px, 8px + 1vw + 0.5vh, 16px)"}>
                 Didn&apos;t have the account ?
-                <a href="/signup"> Create Account</a>
+                <Link to="/signup"> Create Account</Link>
               </Typography>
             </Grid>
           </Grid>

@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   listItem: {
-    width: "60%",
+    width: "80%",
     color: "black",
     textDecoration: "none",
     height: "50px",
@@ -26,6 +26,9 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     padding: "0px 8px",
     justifyContent: "space-between",
+    [theme.breakpoints.down(950)]: {
+      width: "70%",
+    },
     [theme.breakpoints.down(700)]: {
       width: "90%",
     },

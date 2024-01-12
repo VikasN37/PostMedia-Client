@@ -13,12 +13,12 @@ export const useStyles = makeStyles((theme) => ({
     minHeight: "400px",
   },
   listItem: {
-    width: "60%",
+    width: "80%",
     color: "black",
     textDecoration: "none",
     height: "50px",
     display: "flex",
-    fontSize: "clamp(14px, 12px + 1vw, 21px)",
+    fontSize: "clamp(14px, 11px + 1vw, 18px)",
     alignItems: "center",
     padding: "0px 8px",
     justifyContent: "space-between",
@@ -30,13 +30,13 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   buttonContainer: {
-    width: "60%",
+    width: "80%",
     display: "flex",
     justifyContent: "center",
   },
   backButton: {
     display: "flex",
-    width: "100%",
+    width: "60%",
     justifyContent: "space-between",
     alignItems: "center",
     borderRadius: "10px",
@@ -48,6 +48,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   backButtonContainer: {
     display: "flex",
+    width: "80%",
     justifyContent: "center",
   },
   uploadButton: {

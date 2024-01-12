@@ -9,15 +9,18 @@ import {
 } from "@mui/material";
 import { Button } from "@mui/base";
 import { useStyles } from "./style";
-import { useState } from "react";
-import { useSignupMutation } from "../../../store";
+import { useEffect, useState } from "react";
+import { useSignupMutation } from "../../../store/store";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../apis/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function SignupPage() {
   const classes = useStyles();
   const [signupBody, setSignUpBody] = useState({});
-
-  const [signup, { isLoading, isSuccess, isError, error }] =
-    useSignupMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [signup, { isLoading, data, isSuccess, isError }] = useSignupMutation();
 
   function handleChange(e) {
     setSignUpBody({ ...signupBody, [e.target.name]: e.target.value });
@@ -25,9 +28,16 @@ function SignupPage() {
 
   function handleClick(e) {
     e.preventDefault();
-    console.log(signupBody);
+
     signup(signupBody);
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setToken(data.data.token));
+      navigate("/home/all");
+    }
+  });
   return (
     <Grid container className={classes.page}>
       {isSuccess && (

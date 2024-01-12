@@ -1,15 +1,68 @@
-import { Box, Grid, TextField, Typography, useMediaQuery } from "@mui/material";
+import {
+  Alert,
+  Box,
+  CircularProgress,
+  Grid,
+  Snackbar,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useStyles } from "./style";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Button } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
+import { useState } from "react";
+import { useChangePasswordMutation } from "../../apis/userApi";
 
 function ChangePassword() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
+
+  const [open, setOpen] = useState(false);
+  const [passwordBody, setPasswordBody] = useState({});
+  const [changePassword, { isLoading, isSuccess, isError }] =
+    useChangePasswordMutation();
+
+  function handleChange(e) {
+    setPasswordBody({ ...passwordBody, [e.target.name]: e.target.value });
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    changePassword(passwordBody);
+  }
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     dispatch(changePassword(passwordBody));
+  //   }
+  // });
+
   return (
     <Grid container className={classes.outletContainer}>
+      {isSuccess && (
+        <Snackbar open={true} autoHideDuration={2000}>
+          <Alert severity="success" sx={{ width: "100%" }}>
+            Password Changed Successfully !
+          </Alert>
+        </Snackbar>
+      )}
+      {isError && (
+        <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          onClose={() => setOpen(false)}
+        >
+          <Alert
+            severity="error"
+            sx={{ width: "100%" }}
+            onClose={() => setOpen(false)}
+          >
+            Wrong Password. Try again
+          </Alert>
+        </Snackbar>
+      )}
       <Grid
         item
         container
@@ -36,6 +89,8 @@ function ChangePassword() {
             <TextField
               variant="outlined"
               placeholder="Current Password"
+              name="currentPassword"
+              onChange={handleChange}
               fullWidth
               className={classes.textfield}
             />
@@ -48,6 +103,8 @@ function ChangePassword() {
             <TextField
               variant="outlined"
               placeholder="New Password"
+              name="password"
+              onChange={handleChange}
               fullWidth
               className={classes.textfield}
             />
@@ -60,6 +117,9 @@ function ChangePassword() {
             <TextField
               variant="outlined"
               placeholder="Confirm Password"
+              name="confirmPassword"
+              onChange={handleChange}
+              confirmPassword
               fullWidth
               className={classes.textfield}
             />
@@ -67,14 +127,25 @@ function ChangePassword() {
         </Grid>
 
         <Grid item className={classes.buttonContainer}>
-          <Button fullWidth variant="contained" color="primary">
-            <Typography
-              fontSize={"clamp(13px, 10px + 1vw, 18px)"}
-              textTransform={"none"}
-            >
-              Update Password
-            </Typography>
-          </Button>
+          <Box width={"60%"}>
+            {isLoading ? (
+              <CircularProgress />
+            ) : (
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit}
+              >
+                <Typography
+                  fontSize={"clamp(13px, 10px + 1vw, 18px)"}
+                  textTransform={"none"}
+                >
+                  Update Password
+                </Typography>
+              </Button>
+            )}
+          </Box>
         </Grid>
         <NavLink
           to={"/home/settings"}

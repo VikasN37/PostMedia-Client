@@ -12,14 +12,24 @@ import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import ShareIcon from "@mui/icons-material/Share";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useStyles } from "./style";
+import { useDeletePostMutation } from "../../apis/postsApi";
 
-function PostCard() {
+function PostCard({ post }) {
   const classes = useStyles();
+  const [deletePost, { isSuccess, isError }] = useDeletePostMutation();
+
+  const { _id, location, date, image, caption, liked } = post;
+
+  function handleClick(e) {
+    e.preventDefault();
+    deletePost(_id);
+  }
+
   return (
     <Card className={classes.card} elevation={3}>
       <CardHeader
-        title="Location"
-        subheader="Date"
+        title={location}
+        subheader={date}
         avatar={
           <Avatar
             sx={{
@@ -36,24 +46,22 @@ function PostCard() {
       <CardMedia
         component="img"
         className={classes.cardMedia}
-        image="https://picsum.photos/250/200"
-        alt="Paella dish"
+        image={image}
+        alt="Photo"
       />
-      <CardContent className={classes.content}>
-        This is my first image
-      </CardContent>
+      <CardContent className={classes.content}>{caption}</CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <Checkbox
             icon={<FavoriteBorder />}
-            checkedIcon={<Favorite sx={{ color: "red" }} />}
+            checkedIcon={<Favorite sx={{ color: liked ? "red" : "white" }} />}
           />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon sx={{ fontSize: "clamp(16px, 12px + 2vw, 22px)" }} />
         </IconButton>
 
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" onClick={handleClick}>
           <DeleteIcon sx={{ fontSize: "clamp(16px, 12px + 2vw, 22px)" }} />
         </IconButton>
       </CardActions>

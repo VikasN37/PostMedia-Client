@@ -1,16 +1,46 @@
-import { Box, Grid, TextField, Typography, useMediaQuery } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Grid,
+  Snackbar,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useStyles } from "./style";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Button } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
+import { useState } from "react";
+import { useAddPostMutation } from "../../apis/postsApi";
 
 function AddPosts() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
+
+  const [postData, setPostData] = useState({});
+  const [addPost, { data, isLoading, isSuccess }] = useAddPostMutation();
+
+  function handleChange(e) {
+    setPostData({ ...postData, [e.target.name]: e.target.value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    addPost(postData);
+  }
+
   return (
     <Grid container className={classes.outletContainer}>
+      {isSuccess && (
+        <Snackbar open={true}>
+          <Alert severity="success" sx={{ width: "100%" }}>
+            Post Added !
+          </Alert>
+        </Snackbar>
+      )}
       <Grid
         item
         container
@@ -35,8 +65,10 @@ function AddPosts() {
           <Box>Select Photo :</Box>
           <Box className={classes.uploadButton}>
             <Button
+              input
               fullWidth
               variant="contained"
+              component="label"
               startIcon={
                 <CloudUploadIcon
                   sx={{ fontSize: "clamp(16px, 13px + 1vw, 24px)" }}
@@ -49,37 +81,51 @@ function AddPosts() {
                 textTransform={"none"}
               >
                 Upload
+                <input
+                  type="file"
+                  name="image"
+                  // onChange={handleChange}
+                  hidden
+                />
               </Typography>
             </Button>
           </Box>
         </Grid>
 
         <Grid item className={classes.listItem}>
-          Enter caption :
-          <Box width={"50%"}>
-            <TextField
-              variant="outlined"
-              placeholder="Enter Caption"
-              fullWidth
-              className={classes.textfield}
-            />
-          </Box>
-        </Grid>
-        <Grid item className={classes.listItem}>
           Enter Location :
           <Box width={"50%"}>
             <TextField
               variant="outlined"
               placeholder="Enter Location"
+              name="location"
+              onChange={handleChange}
               fullWidth
               rows={2}
               className={classes.textfield}
             />
           </Box>
         </Grid>
-
+        <Grid item className={classes.listItem}>
+          Enter caption :
+          <Box width={"50%"}>
+            <TextField
+              variant="outlined"
+              placeholder="Enter Caption"
+              name="caption"
+              onChange={handleChange}
+              fullWidth
+              className={classes.textfield}
+            />
+          </Box>
+        </Grid>
         <Grid item className={classes.buttonContainer}>
-          <Button fullWidth variant="contained" color="primary">
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit}
+          >
             <Typography
               fontSize={"clamp(13px, 10px + 1vw, 18px)"}
               textTransform={"none"}

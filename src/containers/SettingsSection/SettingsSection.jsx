@@ -3,16 +3,38 @@ import { useStyles } from "./style";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useLogoutMutation } from "../../apis/userApi";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { resetToken } from "../../apis/authSlice";
 
 function Settings() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleDelete = () => {
     let entered = prompt(
       "Type 'DELETE' to confirm. This action is irreversible."
     );
   };
+
+  const [logout, { isSuccess }] = useLogoutMutation();
+
+  function handleLogout(e) {
+    e.preventDefault();
+    logout();
+  }
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(resetToken());
+      navigate("/");
+    }
+  });
+
   return (
     <Grid container className={classes.outletContainer}>
       <Grid
@@ -52,7 +74,7 @@ function Settings() {
             />
           </Box>
         </NavLink>
-        <Grid item className={classes.listItem}>
+        <Grid item className={classes.listItem} onClick={handleLogout}>
           Logout
           <Box>
             <KeyboardReturnIcon

@@ -15,16 +15,46 @@ import SearchIcon from "@mui/icons-material/SearchOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import {
+  useDeleteAccountMutation,
+  useLogoutMutation,
+} from "../../apis/userApi";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { resetToken } from "../../apis/authSlice";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 function NavBar({ openDrawer, setOpenDrawer }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const [deleteAccount] = useDeleteAccountMutation();
   const handleDelete = () => {
     let entered = prompt(
       "Type 'DELETE' to confirm. This action is irreversible."
     );
+    if (entered === "DELETE") {
+      deleteAccount();
+      dispatch(resetToken());
+      navigate("/");
+    }
   };
+
+  const [logout, { isSuccess }] = useLogoutMutation();
+  function handleLogout(e) {
+    e.preventDefault();
+    logout();
+  }
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(resetToken());
+      navigate("/");
+    }
+  });
+
   const [open, setOpen] = useState(false);
   const down700 = useMediaQuery("(max-width:700px)");
   return (
@@ -106,7 +136,11 @@ function NavBar({ openDrawer, setOpenDrawer }) {
           }}
           onClose={() => setOpen(false)}
         >
-          <MenuItem onClose={() => setOpen(false)} className={classes.menuItem}>
+          <MenuItem
+            onClose={() => setOpen(false)}
+            className={classes.menuItem}
+            onClick={handleLogout}
+          >
             Logout
           </MenuItem>
           <MenuItem

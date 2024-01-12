@@ -1,9 +1,10 @@
 import { Divider, useMediaQuery } from "@material-ui/core";
-import { Box, Grid } from "@mui/material";
+import { Box, CircularProgress, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useStyles } from "./style";
 import AddIcon from "@mui/icons-material/Add";
+import { useGetUserQuery } from "../../apis/userApi";
 
 function SideBar({ openDrawer, setOpenDrawer }) {
   const classes = useStyles();
@@ -14,6 +15,13 @@ function SideBar({ openDrawer, setOpenDrawer }) {
     setOpenDrawer(!openDrawer);
   };
 
+  const { data, isLoading, isFetching, isError } = useGetUserQuery();
+  if (isFetching || !data) {
+    return <CircularProgress />;
+  }
+  const { user } = data.data;
+
+  let likedPosts = user.posts.filter((el) => el.liked === true);
   return (
     <Grid
       container
@@ -34,7 +42,7 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         <Grid
           item
           className={classes.profilePhoto}
-          sx={{ backgroundImage: `url(${profilePhoto})` }}
+          sx={{ backgroundImage: `url(${user.profilePhoto})` }}
         ></Grid>
 
         <Grid
@@ -45,8 +53,8 @@ function SideBar({ openDrawer, setOpenDrawer }) {
           alignItems="center"
           className={classes.nameSection}
         >
-          <Box className={classes.username}>Vikas</Box>
-          <Box className={classes.name}>Vikas Niranjan</Box>
+          <Box className={classes.username}>{user.username}</Box>
+          <Box className={classes.name}>{user.name}</Box>
         </Grid>
       </Grid>
       <Divider orientation="horizontal" className={classes.divider} />
@@ -59,13 +67,13 @@ function SideBar({ openDrawer, setOpenDrawer }) {
       >
         <NavLink to="all" className={classes.buttons} onClick={handleClick}>
           <Box className={classes.btnCount}>
-            <Box className={classes.btnCountText}>30</Box>
+            <Box className={classes.btnCountText}>{user.posts.length}</Box>
           </Box>
           <Box className={classes.btnText}>All Posts</Box>
         </NavLink>
         <NavLink to="liked" className={classes.buttons} onClick={handleClick}>
           <Box className={classes.btnCount}>
-            <Box className={classes.btnCountText}>10</Box>
+            <Box className={classes.btnCountText}>{likedPosts.length}</Box>
           </Box>
           <Box className={classes.btnText}>Liked</Box>
         </NavLink>
