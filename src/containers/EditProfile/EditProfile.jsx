@@ -1,6 +1,7 @@
 import {
   Alert,
   Box,
+  CircularProgress,
   Grid,
   Snackbar,
   TextField,
@@ -19,18 +20,22 @@ import { useUpdateUserMutation } from "../../apis/userApi";
 function EditProfile() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
-  const [body, setBody] = useState({});
+
+  const [newName, setNewName] = useState("");
+  const [file, setFile] = useState();
 
   const [updateUser, { isSuccess, isError, isLoading }] =
     useUpdateUserMutation();
-  function handleChange(e) {
-    setBody({ ...body, [e.target.name]: e.target.value });
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(body);
-    updateUser(body);
+    const formData = new FormData();
+    if (newName !== "") {
+      formData.append("name", newName);
+    }
+    formData.append("profilePhoto", file);
+    console.log(...formData);
+    updateUser(formData);
   }
 
   return (
@@ -85,7 +90,7 @@ function EditProfile() {
                 <input
                   type="file"
                   name="image"
-                  onChange={handleChange}
+                  onChange={(e) => setFile(e.target.files[0])}
                   hidden
                 />
               </Typography>
@@ -100,7 +105,7 @@ function EditProfile() {
               variant="outlined"
               placeholder="Enter Name"
               name="name"
-              onChange={handleChange}
+              onChange={(e) => setNewName(e.target.value)}
               fullWidth
               className={classes.textfield}
             />
@@ -119,7 +124,7 @@ function EditProfile() {
                 fontSize={"clamp(13px, 10px + 1vw, 18px)"}
                 textTransform={"none"}
               >
-                Save Changes
+                {isLoading ? <CircularProgress /> : "Save Changes"}
               </Typography>
             </Button>
           </Box>

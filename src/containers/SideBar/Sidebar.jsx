@@ -42,7 +42,9 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         <Grid
           item
           className={classes.profilePhoto}
-          sx={{ backgroundImage: `url(${user.profilePhoto})` }}
+          sx={{
+            backgroundImage: `url(http://127.0.0.1:8080/profilePhotos/${user.profilePhoto})`,
+          }}
         ></Grid>
 
         <Grid

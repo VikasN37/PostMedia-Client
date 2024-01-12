@@ -29,8 +29,9 @@ const postsApi = createApi({
       addPost: builder.mutation({
         invalidatesTags: ["Post"],
         query: (postData) => {
+          console.log("query running");
           return {
-            url: "api/vi/posts",
+            url: "api/v1/posts",
             method: "POST",
             body: postData,
           };

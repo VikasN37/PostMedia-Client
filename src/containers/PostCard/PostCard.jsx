@@ -26,7 +26,7 @@ function PostCard({ post }) {
   }
 
   return (
-    <Card className={classes.card} elevation={3}>
+    <Card className={classes.card} elevation={3} sx={{ marginBottom: "20px" }}>
       <CardHeader
         title={location}
         subheader={date}
@@ -37,7 +37,7 @@ function PostCard({ post }) {
               width: "clamp(23px, 20px + 1vw + 1vh, 48px)",
               height: "clamp(23px, 20px + 1vw + 1vh, 48px)",
             }}
-            src="https://picsum.photos/40/40"
+            // src={`http://127.0.0.1:8080/profilePhotos/${user.profilePhoto}`}
             https:aria-label="recipe"
           />
         }
@@ -45,8 +45,7 @@ function PostCard({ post }) {
 
       <CardMedia
         component="img"
-        className={classes.cardMedia}
-        image={image}
+        image={`http://127.0.0.1:8080/postPhotos/${image}`}
         alt="Photo"
       />
       <CardContent className={classes.content}>{caption}</CardContent>

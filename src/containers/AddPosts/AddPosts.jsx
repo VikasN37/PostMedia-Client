@@ -20,16 +20,26 @@ function AddPosts() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
 
-  const [postData, setPostData] = useState({});
+  const [location, setLocation] = useState("");
+  const [caption, setCaption] = useState("");
+  const [file, setFile] = useState();
   const [addPost, { data, isLoading, isSuccess }] = useAddPostMutation();
 
-  function handleChange(e) {
-    setPostData({ ...postData, [e.target.name]: e.target.value });
-  }
+  // function handleChange(e) {
+  //   setPostContent({ ...postContent, [e.target.name]: e.target.value });
+  // }
 
   function handleSubmit(e) {
     e.preventDefault();
-    addPost(postData);
+
+    const formData = new FormData();
+    formData.append("location", location);
+    formData.append("image", file);
+    formData.append("caption", caption);
+    // addPost(post);
+    console.log(...formData);
+    addPost(formData);
+    // addPost(postData);
   }
 
   return (
@@ -76,18 +86,19 @@ function AddPosts() {
               }
               color="primary"
             >
-              <Typography
+              {/* <Typography
                 fontSize={"clamp(13px, 10px + 1vw, 18px)"}
                 textTransform={"none"}
-              >
-                Upload
-                <input
-                  type="file"
-                  name="image"
-                  // onChange={handleChange}
-                  hidden
-                />
-              </Typography>
+              > */}
+              Select Photo
+              <input
+                type="file"
+                name="image"
+                style={{ width: "100%" }}
+                onChange={(e) => setFile(e.target.files[0])}
+                hidden
+              />
+              {/* </Typography> */}
             </Button>
           </Box>
         </Grid>
@@ -99,7 +110,9 @@ function AddPosts() {
               variant="outlined"
               placeholder="Enter Location"
               name="location"
-              onChange={handleChange}
+              onChange={(e) => {
+                setLocation(e.target.value);
+              }}
               fullWidth
               rows={2}
               className={classes.textfield}
@@ -113,7 +126,7 @@ function AddPosts() {
               variant="outlined"
               placeholder="Enter Caption"
               name="caption"
-              onChange={handleChange}
+              onChange={(e) => setCaption(e.target.value)}
               fullWidth
               className={classes.textfield}
             />
