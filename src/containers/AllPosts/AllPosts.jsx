@@ -11,7 +11,7 @@ function AllPosts() {
   }
 
   const { posts } = data.data;
-  console.log(posts);
+
   return (
     <Grid container className={classes.outletContainer}>
       {posts.length === 0 && (

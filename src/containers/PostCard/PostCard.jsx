@@ -12,11 +12,17 @@ import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import ShareIcon from "@mui/icons-material/Share";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useStyles } from "./style";
-import { useDeletePostMutation } from "../../apis/postsApi";
+import {
+  useDeletePostMutation,
+  useUpdatePostMutation,
+} from "../../apis/postsApi";
+import { useGetUserQuery } from "../../apis/userApi";
 
 function PostCard({ post }) {
   const classes = useStyles();
-  const [deletePost, { isSuccess, isError }] = useDeletePostMutation();
+
+  const [deletePost, { isError }] = useDeletePostMutation();
+  const [updatePost] = useUpdatePostMutation();
 
   const { _id, location, date, image, caption, liked } = post;
 
@@ -24,12 +30,13 @@ function PostCard({ post }) {
     e.preventDefault();
     deletePost(_id);
   }
+  const dateString = new Date(date);
 
   return (
-    <Card className={classes.card} elevation={3} sx={{ marginBottom: "20px" }}>
+    <Card className={classes.card} elevation={6} sx={{ marginBottom: "20px" }}>
       <CardHeader
         title={location}
-        subheader={date}
+        subheader={dateString.toDateString()}
         avatar={
           <Avatar
             sx={{
@@ -50,14 +57,16 @@ function PostCard({ post }) {
       />
       <CardContent className={classes.content}>{caption}</CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => {
+            updatePost({ id: _id, data: !liked });
+          }}
+        >
           <Checkbox
-            icon={<FavoriteBorder />}
-            checkedIcon={<Favorite sx={{ color: liked ? "red" : "white" }} />}
+            icon={<Favorite sx={{ color: liked && "red" }} />}
+            checkedIcon={<Favorite sx={{ color: liked && "red" }} />}
           />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon sx={{ fontSize: "clamp(16px, 12px + 2vw, 22px)" }} />
         </IconButton>
 
         <IconButton aria-label="share" onClick={handleClick}>

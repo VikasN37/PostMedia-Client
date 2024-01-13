@@ -25,21 +25,19 @@ function AddPosts() {
   const [file, setFile] = useState();
   const [addPost, { data, isLoading, isSuccess }] = useAddPostMutation();
 
-  // function handleChange(e) {
-  //   setPostContent({ ...postContent, [e.target.name]: e.target.value });
-  // }
-
   function handleSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("location", location);
+    if (location !== "") {
+      formData.append("location", location);
+    }
+    if (caption !== "") {
+      formData.append("caption", caption);
+    }
     formData.append("image", file);
-    formData.append("caption", caption);
-    // addPost(post);
-    console.log(...formData);
+
     addPost(formData);
-    // addPost(postData);
   }
 
   return (

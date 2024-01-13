@@ -29,7 +29,6 @@ const postsApi = createApi({
       addPost: builder.mutation({
         invalidatesTags: ["Post"],
         query: (postData) => {
-          console.log("query running");
           return {
             url: "api/v1/posts",
             method: "POST",
@@ -47,9 +46,25 @@ const postsApi = createApi({
           };
         },
       }),
+
+      updatePost: builder.mutation({
+        invalidatesTags: ["Post"],
+        query: (args) => {
+          const { id, data } = args;
+          return {
+            url: `api/v1/posts/${id}`,
+            body: { liked: data },
+            method: "PATCH",
+          };
+        },
+      }),
     };
   },
 });
-export const { useGetPostsQuery, useAddPostMutation, useDeletePostMutation } =
-  postsApi;
+export const {
+  useGetPostsQuery,
+  useAddPostMutation,
+  useDeletePostMutation,
+  useUpdatePostMutation,
+} = postsApi;
 export { postsApi };

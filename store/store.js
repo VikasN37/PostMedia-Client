@@ -46,6 +46,7 @@ export {
   useGetPostsQuery,
   useAddPostMutation,
   useDeletePostMutation,
+  useUpdatePostMutation,
 } from "../src/apis/postsApi";
 
 export {

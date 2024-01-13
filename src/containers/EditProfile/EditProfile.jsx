@@ -14,8 +14,9 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Button } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUpdateUserMutation } from "../../apis/userApi";
+import { useSelector } from "react-redux";
 
 function EditProfile() {
   const classes = useStyles();
@@ -34,7 +35,7 @@ function EditProfile() {
       formData.append("name", newName);
     }
     formData.append("profilePhoto", file);
-    console.log(...formData);
+
     updateUser(formData);
   }
 

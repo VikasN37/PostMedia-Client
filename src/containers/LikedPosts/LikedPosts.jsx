@@ -16,14 +16,7 @@ function LikedPosts() {
     <Grid container className={classes.outletContainer}>
       <Box className={classes.cardContainer}>
         {likedPosts.map((post) => (
-          <PostCard
-            key={post._id}
-            location={post.location}
-            date={post.date}
-            image={post.image}
-            caption={post.caption}
-            liked={post.liked}
-          />
+          <PostCard key={post._id} post={post} />
         ))}
       </Box>
     </Grid>

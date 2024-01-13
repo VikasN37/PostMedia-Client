@@ -39,14 +39,18 @@ function LoginPage() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(loginBody);
+
     login(loginBody);
-    // navigate("/home/all");
   };
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(setToken(data.data.token));
+      const globalObject = {
+        token: data.data.token,
+        user: data.data.user,
+      };
+      dispatch(setToken(globalObject));
+
       navigate("/home/all");
     }
   });

@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   profileSection: {
     height: "100%",
     width: "100%",
+
     gap: "clamp(10px, -5px + 4vh, 28px)",
     [theme.breakpoints.down("sm")]: {
       margin: "20px 0px",
