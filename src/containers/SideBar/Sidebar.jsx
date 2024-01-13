@@ -21,7 +21,6 @@ function SideBar({ openDrawer, setOpenDrawer }) {
   }
   const { user } = data.data;
 
-  let likedPosts = user.posts.filter((el) => el.liked === true);
   return (
     <Grid
       container
@@ -69,13 +68,13 @@ function SideBar({ openDrawer, setOpenDrawer }) {
       >
         <NavLink to="all" className={classes.buttons} onClick={handleClick}>
           <Box className={classes.btnCount}>
-            <Box className={classes.btnCountText}>{user.posts.length}</Box>
+            <Box className={classes.btnCountText}>{user.totalPosts}</Box>
           </Box>
           <Box className={classes.btnText}>All Posts</Box>
         </NavLink>
         <NavLink to="liked" className={classes.buttons} onClick={handleClick}>
           <Box className={classes.btnCount}>
-            <Box className={classes.btnCountText}>{likedPosts.length}</Box>
+            <Box className={classes.btnCountText}>{user.likedPosts}</Box>
           </Box>
           <Box className={classes.btnText}>Liked</Box>
         </NavLink>

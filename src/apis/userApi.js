@@ -4,7 +4,6 @@ const userApi = createApi({
   reducerPath: "users",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://127.0.0.1:8080/",
-    // credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().root.auth.token;
 
@@ -57,6 +56,7 @@ const userApi = createApi({
 
       getUser: builder.query({
         providesTags: ["User"],
+
         query: () => {
           return {
             url: "api/v1/users",

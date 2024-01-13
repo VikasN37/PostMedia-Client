@@ -47,7 +47,6 @@ function LoginPage() {
     if (isSuccess) {
       const globalObject = {
         token: data.data.token,
-        user: data.data.user,
       };
       dispatch(setToken(globalObject));
 
