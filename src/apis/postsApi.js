@@ -1,65 +1,41 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { mainApi } from "./mainApi";
 
-const postsApi = createApi({
-  reducerPath: "posts",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:8080/",
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().root.auth.token;
+const postsApi = mainApi.injectEndpoints({
+  endpoints: (builder) => ({
+    getPosts: builder.query({
+      providesTags: ["Post"],
+      query: () => ({
+        url: "api/v1/posts",
+        method: "GET",
+      }),
+    }),
 
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
+    addPost: builder.mutation({
+      invalidatesTags: ["Post", "User"],
+      query: (postData) => ({
+        url: "api/v1/posts",
+        method: "POST",
+        body: postData,
+      }),
+    }),
 
-      return headers;
-    },
+    deletePost: builder.mutation({
+      invalidatesTags: ["Post", "User"],
+      query: (id) => ({
+        url: `api/v1/posts/${id}`,
+        method: "DELETE",
+      }),
+    }),
+
+    updatePost: builder.mutation({
+      invalidatesTags: ["Post", "User"],
+      query: ({ id, data }) => ({
+        url: `api/v1/posts/${id}`,
+        body: { liked: data },
+        method: "PATCH",
+      }),
+    }),
   }),
-  endpoints(builder) {
-    return {
-      getPosts: builder.query({
-        providesTags: ["Post"],
-        query: () => {
-          return {
-            url: "api/v1/posts",
-            method: "GET",
-          };
-        },
-      }),
-
-      addPost: builder.mutation({
-        invalidatesTags: ["Post"],
-        query: (postData) => {
-          return {
-            url: "api/v1/posts",
-            method: "POST",
-            body: postData,
-          };
-        },
-      }),
-
-      deletePost: builder.mutation({
-        invalidatesTags: ["Post"],
-        query: (id) => {
-          return {
-            url: `api/v1/posts/${id}`,
-            method: "DELETE",
-          };
-        },
-      }),
-
-      updatePost: builder.mutation({
-        invalidatesTags: ["Post"],
-        query: (args) => {
-          const { id, data } = args;
-          return {
-            url: `api/v1/posts/${id}`,
-            body: { liked: data },
-            method: "PATCH",
-          };
-        },
-      }),
-    };
-  },
 });
 export const {
   useGetPostsQuery,
