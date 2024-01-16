@@ -47,7 +47,7 @@ function PostCard({ post }) {
             }}
             src={
               isSuccess &&
-              `http://127.0.0.1:8080/profilePhotos/${data.data.user.profilePhoto}`
+              `https://postmedia-backend.onrender.com/profilePhotos/${data.data.user.profilePhoto}`
             }
             https:aria-label="recipe"
           />
@@ -56,7 +56,7 @@ function PostCard({ post }) {
 
       <CardMedia
         component="img"
-        image={`http://127.0.0.1:8080/postPhotos/${image}`}
+        image={`https://postmedia-backend.onrender.com/postPhotos/${image}`}
         alt="Photo"
       />
       <CardContent className={classes.content}>{caption}</CardContent>

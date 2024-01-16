@@ -43,7 +43,7 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         gap={1.5}
       >
         <Avatar
-          src={`http://127.0.0.1:8080/profilePhotos/${user.profilePhoto}`}
+          src={`https://postmedia-backend.onrender.com/profilePhotos/${user.profilePhoto}`}
           sx={{
             width: "clamp(50px, 40px + 5vw + 10vh, 250px)",
             height: "clamp(50px, 40px + 5vw + 10vh, 250px)",

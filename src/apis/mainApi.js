@@ -4,7 +4,7 @@ export const mainApi = createApi({
   reducerPath: "api",
   tagTypes: ["User", "Post"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:8080/",
+    baseUrl: "https://postmedia-backend.onrender.com/",
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().root.auth.token;
