@@ -52,7 +52,7 @@ function NavBar({ openDrawer, setOpenDrawer, setSearchString }) {
   useEffect(() => {
     if (isSuccess) {
       dispatch(resetToken());
-      dispatch(mainApi.util.resetApiState())
+      dispatch(mainApi.util.resetApiState());
       navigate("/");
     }
   });
@@ -87,7 +87,7 @@ function NavBar({ openDrawer, setOpenDrawer, setSearchString }) {
       </Grid>
       <Grid item className={classes.searchbarContainer}>
         <TextField
-          placeholder="Search..."
+          placeholder="Search by location..."
           variant="standard"
           fullWidth
           onChange={(e) => setSearchString(e.target.value)}
