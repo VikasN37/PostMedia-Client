@@ -49,6 +49,21 @@ const userApi = mainApi.injectEndpoints({
       }),
     }),
 
+    forgotPassword: builder.mutation({
+      query: (email) => ({
+        url: "api/v1/users/forgotPassword",
+        method: "POST",
+        body: { email: email },
+      }),
+    }),
+
+    resetPassword: builder.mutation({
+      query: ({ token, password, confirmPassword }) => ({
+        url: `api/v1/users/resetPassword/${token}`,
+        body: { password: password, confirmPassword: confirmPassword },
+        method: "PATCH",
+      }),
+    }),
     updateUser: builder.mutation({
       invalidatesTags: ["User"],
       query: (newBody) => ({
@@ -68,5 +83,7 @@ export const {
   useUpdateUserMutation,
   useLogoutMutation,
   useDeleteAccountMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
 } = userApi;
 export { userApi };

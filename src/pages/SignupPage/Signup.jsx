@@ -10,10 +10,12 @@ import {
 import { Button } from "@mui/base";
 import { useStyles } from "./style";
 import { useEffect, useState } from "react";
-import { useSignupMutation } from "../../../store/store";
+
 import { useDispatch } from "react-redux";
 import { setToken } from "../../apis/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants";
+import { useSignupMutation } from "../../apis/userApi";
 
 function SignupPage() {
   const classes = useStyles();
@@ -35,7 +37,7 @@ function SignupPage() {
   useEffect(() => {
     if (isSuccess) {
       dispatch(setToken(data.data.token));
-      navigate("/home/all");
+      navigate(`/home/${ROUTES.ALLPOSTS}`);
     }
   });
   return (
@@ -207,7 +209,7 @@ function SignupPage() {
             <Typography fontSize={"clamp(11px, 6px + 1vw, 17px)"}>
               Already have an account ?
               <b>
-                <a href="/login"> Login</a>
+                <Link to={`/${ROUTES.LOGIN}`}> Login</Link>
               </b>
             </Typography>
           </Grid>

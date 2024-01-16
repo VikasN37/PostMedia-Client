@@ -15,6 +15,7 @@ import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { useState } from "react";
 import { useChangePasswordMutation } from "../../apis/userApi";
+import { ROUTES } from "../../constants";
 
 function ChangePassword() {
   const classes = useStyles();
@@ -32,12 +33,6 @@ function ChangePassword() {
     e.preventDefault();
     changePassword(passwordBody);
   }
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     dispatch(changePassword(passwordBody));
-  //   }
-  // });
 
   return (
     <Grid container className={classes.outletContainer}>
@@ -148,7 +143,7 @@ function ChangePassword() {
           </Box>
         </Grid>
         <NavLink
-          to={"/home/settings"}
+          to={`/home/${ROUTES.SETTINGS}`}
           className={clsx(classes.listItem, classes.backButtonContainer)}
         >
           <Box className={classes.backButton}>

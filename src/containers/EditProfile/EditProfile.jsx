@@ -14,9 +14,9 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Button } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUpdateUserMutation } from "../../apis/userApi";
-import { useSelector } from "react-redux";
+import { ROUTES } from "../../constants";
 
 function EditProfile() {
   const classes = useStyles();
@@ -25,7 +25,7 @@ function EditProfile() {
   const [newName, setNewName] = useState("");
   const [file, setFile] = useState();
 
-  const [updateUser, { isSuccess, isError, isLoading }] =
+  const [updateUser, { isSuccess, isLoading, isError }] =
     useUpdateUserMutation();
 
   function handleSubmit(e) {
@@ -37,6 +37,14 @@ function EditProfile() {
     formData.append("profilePhoto", file);
 
     updateUser(formData);
+  }
+
+  if (isError) {
+    return (
+      <Typography variant="h4" color={"red"}>
+        Oops! Something went wrong...
+      </Typography>
+    );
   }
 
   return (
@@ -131,7 +139,7 @@ function EditProfile() {
           </Box>
         </Grid>
         <NavLink
-          to={"/home/settings"}
+          to={`/home/${ROUTES.SETTINGS}`}
           className={clsx(classes.listItem, classes.backButtonContainer)}
         >
           <Box className={classes.backButton}>

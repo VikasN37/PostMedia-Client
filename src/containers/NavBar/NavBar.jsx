@@ -23,9 +23,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetToken } from "../../apis/authSlice";
 import { useNavigate } from "react-router-dom";
+import { mainApi } from "../../apis/mainApi";
 
 // eslint-disable-next-line react/prop-types
-function NavBar({ openDrawer, setOpenDrawer }) {
+function NavBar({ openDrawer, setOpenDrawer, setSearchString }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ function NavBar({ openDrawer, setOpenDrawer }) {
   useEffect(() => {
     if (isSuccess) {
       dispatch(resetToken());
+      dispatch(mainApi.util.resetApiState())
       navigate("/");
     }
   });
@@ -88,13 +90,14 @@ function NavBar({ openDrawer, setOpenDrawer }) {
           placeholder="Search..."
           variant="standard"
           fullWidth
+          onChange={(e) => setSearchString(e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton>
                   <SearchIcon
                     sx={{
-                      fontSize: "clamp(13px, 10px + 1vw, 30px)",
+                      fontSize: "clamp(15px, 14px + 1vw + 0.5vh, 28px)",
                       paddingLeft: "9px",
                     }}
                   />

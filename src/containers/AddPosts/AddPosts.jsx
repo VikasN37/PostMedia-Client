@@ -15,6 +15,7 @@ import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { useState } from "react";
 import { useAddPostMutation } from "../../apis/postsApi";
+import { ROUTES } from "../../constants";
 
 function AddPosts() {
   const classes = useStyles();
@@ -23,7 +24,7 @@ function AddPosts() {
   const [location, setLocation] = useState("");
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState();
-  const [addPost, { data, isLoading, isSuccess }] = useAddPostMutation();
+  const [addPost, { isError, isSuccess }] = useAddPostMutation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,7 +40,13 @@ function AddPosts() {
 
     addPost(formData);
   }
-
+  if (isError) {
+    return (
+      <Typography variant="h4" color={"red"}>
+        Oops! Something went wrong...
+      </Typography>
+    );
+  }
   return (
     <Grid container className={classes.outletContainer}>
       {isSuccess && (
@@ -146,7 +153,7 @@ function AddPosts() {
           </Button>
         </Grid>
         <NavLink
-          to={"/home/all"}
+          to={`/home/${ROUTES.ALLPOSTS}`}
           className={clsx(classes.listItem, classes.backButtonContainer)}
         >
           <Box className={classes.backButton}>

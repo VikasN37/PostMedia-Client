@@ -1,16 +1,34 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { useStyles } from "./style";
 import PostCard from "../PostCard/PostCard";
-import { useGetPostsQuery } from "../../../store/store";
+
+import { useOutletContext } from "react-router-dom";
+import { useGetPostsQuery } from "../../apis/postsApi";
 
 function AllPosts() {
   const classes = useStyles();
-  const { data, isError, isFetching, isSuccess } = useGetPostsQuery();
+  const [searchString] = useOutletContext();
+  const { data, isError, isFetching } = useGetPostsQuery();
+  if (isError) {
+    return (
+      <Typography variant="h5" color={"red"}>
+        Something went wrong ! Try again.
+      </Typography>
+    );
+  }
   if (isFetching || !data) {
     return <CircularProgress />;
   }
 
   const { posts } = data.data;
+
+  let resultantPosts = posts;
+
+  if (searchString !== "") {
+    resultantPosts = posts.filter((post) =>
+      post.location.toUpperCase().startsWith(searchString.toUpperCase())
+    );
+  }
 
   return (
     <Grid container className={classes.outletContainer}>
@@ -19,7 +37,6 @@ function AllPosts() {
           <Typography
             fontSize={"clamp(14px, 10px + 1vw, 25px)"}
             textAlign={"center"}
-            align="middle"
             sx={{ opacity: "0.8" }}
           >
             Start creating post by clicking &quot;Add Posts&quot; in sidebar{" "}
@@ -27,7 +44,7 @@ function AllPosts() {
         </Box>
       )}
       <Box className={classes.cardContainer}>
-        {posts.map((post) => (
+        {resultantPosts.map((post) => (
           <PostCard post={post} key={post._id} />
         ))}
       </Box>

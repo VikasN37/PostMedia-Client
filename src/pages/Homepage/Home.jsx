@@ -7,13 +7,20 @@ import { Outlet } from "react-router-dom";
 
 function Homepage() {
   const classes = useStyles();
+  const [searchString, setSearchString] = useState("");
+
   const down700 = useMediaQuery("(max-width:700px)");
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
     <Grid container className={classes.page}>
       <Grid container item className={classes.navBar}>
-        <NavBar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+        <NavBar
+          openDrawer={openDrawer}
+          setOpenDrawer={setOpenDrawer}
+          searchString={searchString}
+          setSearchString={setSearchString}
+        />
       </Grid>
       <Grid container item className={classes.appLayout}>
         <Grid
@@ -31,7 +38,7 @@ function Homepage() {
           className={classes.contentBar}
           alignItems={"center"}
         >
-          <Outlet />
+          <Outlet context={[searchString, setSearchString]} />
         </Grid>
       </Grid>
     </Grid>

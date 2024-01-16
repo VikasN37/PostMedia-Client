@@ -21,8 +21,7 @@ import linkedin from "../../assets/linkedin-icon.ico";
 import { Link, NavLink } from "react-router-dom";
 import pic1 from "../../assets/pic1.jpeg";
 import pic2 from "../../assets/pic2.avif";
-
-// Get started Button , footer buttons , Register button down has issue
+import { ROUTES } from "../../constants";
 
 const itemData = [
   {
@@ -59,11 +58,11 @@ function LandingPage() {
             <Box>About</Box>
           </Link>
 
-          <NavLink to="login" className={classes.navButtons}>
+          <NavLink to={ROUTES.LOGIN} className={classes.navButtons}>
             <Box>Login</Box>
           </NavLink>
 
-          <NavLink to="signup" className={classes.navButtons}>
+          <NavLink to={ROUTES.SIGNUP} className={classes.navButtons}>
             <Box>Join Now</Box>
           </NavLink>
         </Box>
@@ -107,7 +106,7 @@ function LandingPage() {
               >
                 A perfect app to save your memories as photos
               </Typography>
-              <NavLink to={"signup"}>
+              <NavLink to={ROUTES.SIGNUP}>
                 <Button variant="contained" className={classes.button}>
                   Get Started
                 </Button>
@@ -126,7 +125,7 @@ function LandingPage() {
           >
             {/* <Grid item className={classes.topPhoto}></Grid> */}
 
-            <ImageList sx={{ width: "100%" }} cols={2} rowHeight={"100%"}>
+            <ImageList sx={{ width: "100%" }} cols={2}>
               {itemData.map((item) => (
                 <ImageListItem key={item.img}>
                   <img

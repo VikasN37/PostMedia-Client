@@ -12,10 +12,11 @@ import { Button } from "@mui/base";
 import { useStyles } from "./style";
 
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../apis/authSlice";
 import { useLoginMutation } from "../../apis/userApi";
+import { ROUTES } from "../../constants";
 
 function LoginPage() {
   const classes = useStyles();
@@ -29,14 +30,6 @@ function LoginPage() {
     setLoginBody({ ...loginBody, [e.target.name]: e.target.value });
   }
 
-  // const handleClick = useCallback(
-  //   (e) => {
-  //     e.preventDefault();
-  //     login(loginBody);
-  //   },
-  //   [login, loginBody]
-  // );
-
   const handleClick = (e) => {
     e.preventDefault();
 
@@ -45,17 +38,15 @@ function LoginPage() {
 
   useEffect(() => {
     if (isSuccess) {
-      const globalObject = {
-        token: data.data.token,
-      };
-      dispatch(setToken(globalObject));
+      dispatch(setToken(data.data.token));
 
-      navigate("/home/all");
+      navigate(`/home/${ROUTES.ALLPOSTS}`);
     }
   });
 
   const down400 = useMediaQuery("(max-width:400px)");
   const down280 = useMediaQuery("(max-width:280px)");
+
   return (
     <Grid container className={classes.page}>
       <Grid container item className={classes.content}>
@@ -155,7 +146,9 @@ function LoginPage() {
             <Grid item>
               <Typography fontSize={"clamp(10px, 8px + 1vw + 0.5vh, 16px)"}>
                 Forgot Password?
-                <a href="/signup"> Click to reset</a>
+                <NavLink to={`/${ROUTES.RESETPASSWORD}`}>
+                  <u>Click to reset</u>{" "}
+                </NavLink>
               </Typography>
               {isLoading ? (
                 <Box display={"flex"} justifyContent={"center"}>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { NotFoundPage } from "./pages/NotFound/NotFound";
 import LoginPage from "./pages/Login/Login";
 import LandingPage from "./pages/LandingPage/Landing";
@@ -10,22 +10,36 @@ import LikedPosts from "./containers/LikedPosts/LikedPosts";
 import EditProfile from "./containers/EditProfile/EditProfile";
 import ChangePassword from "./containers/ChangePassword/ChangePassword";
 import SignupPage from "./pages/SignupPage/Signup";
+import { useSelector } from "react-redux";
+import { ROUTES } from "./constants";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 function App() {
+  const token = useSelector((state) => state.root.auth.token);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="signup" element={<SignupPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route
+          path="/"
+          element={token ? <Navigate to={"/home/all"} /> : <LandingPage />}
+        />
 
-        <Route path="home" element={<Homepage />}>
-          <Route index path="all" element={<AllPosts />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="add" element={<AddPosts />} />
-          <Route path="liked" element={<LikedPosts />} />
-          <Route path="settings/edit" element={<EditProfile />} />
-          <Route path="settings/changePassword" element={<ChangePassword />} />
+        {!token && (
+          <>
+            <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
+            <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+            <Route path={ROUTES.RESETPASSWORD} element={<ResetPassword />} />
+          </>
+        )}
+
+        <Route path="/home" element={<Homepage />}>
+          <Route index path={ROUTES.ALLPOSTS} element={<AllPosts />} />
+          <Route path={ROUTES.SETTINGS} element={<Settings />} />
+          <Route path={ROUTES.ADDPOST} element={<AddPosts />} />
+          <Route path={ROUTES.LIKEDPOSTS} element={<LikedPosts />} />
+          <Route path={ROUTES.EDITPROFILE} element={<EditProfile />} />
+          <Route path={ROUTES.CHANGEPASSWORD} element={<ChangePassword />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

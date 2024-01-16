@@ -9,7 +9,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setToken(state, action) {
-      state.token = action.payload.token;
+      state.token = action.payload;
     },
 
     resetToken(state) {

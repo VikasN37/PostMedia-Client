@@ -18,9 +18,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   textfield: {
     "& .MuiOutlinedInput-input": {
-      fontSize: "clamp(12px, 10px + 1vw, 17px)",
-      height: "40px",
-      padding: "10px",
+      fontSize: "clamp(6px, 5px + 1vw, 17px)",
+      // height: "40px",
+      // padding: "10px",
       justifyContent: "center",
       alignItems: "center",
       [theme.breakpoints.down(350)]: {
@@ -31,12 +31,13 @@ export const useStyles = makeStyles((theme) => ({
   searchbarContainer: {
     width: "35%",
     backgroundColor: theme.palette.primary.contrastText,
+    paddingLeft: "5px",
     [theme.breakpoints.down(700)]: {
-      width: "90%",
+      width: "80%",
       height: "50%",
     },
     [theme.breakpoints.down(700)]: {
-      width: "50%",
+      width: "45%",
       height: "50%",
     },
     display: "flex",

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Avatar,
   Card,
@@ -8,8 +9,7 @@ import {
   Checkbox,
   IconButton,
 } from "@mui/material";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-import ShareIcon from "@mui/icons-material/Share";
+import { Favorite } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useStyles } from "./style";
 import {
@@ -21,8 +21,9 @@ import { useGetUserQuery } from "../../apis/userApi";
 function PostCard({ post }) {
   const classes = useStyles();
 
-  const [deletePost, { isError }] = useDeletePostMutation();
+  const [deletePost] = useDeletePostMutation();
   const [updatePost] = useUpdatePostMutation();
+  const { data, isSuccess } = useGetUserQuery();
 
   const { _id, location, date, image, caption, liked } = post;
 
@@ -44,7 +45,10 @@ function PostCard({ post }) {
               width: "clamp(23px, 20px + 1vw + 1vh, 48px)",
               height: "clamp(23px, 20px + 1vw + 1vh, 48px)",
             }}
-            // src={`http://127.0.0.1:8080/profilePhotos/${user.profilePhoto}`}
+            src={
+              isSuccess &&
+              `http://127.0.0.1:8080/profilePhotos/${data.data.user.profilePhoto}`
+            }
             https:aria-label="recipe"
           />
         }

@@ -3,9 +3,12 @@ import { Button } from "@material-ui/core";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { NavLink } from "react-router-dom";
 import { useStyles } from "./style";
+import { useSelector } from "react-redux";
 
 export function NotFoundPage() {
   const classes = useStyles();
+
+  const token = useSelector((state) => state.root.auth.token);
 
   return (
     <Grid container className={classes.page}>
@@ -18,7 +21,7 @@ export function NotFoundPage() {
           The requested page could not be found on the server.
         </Grid>
         <Grid item>
-          <NavLink to="/">
+          <NavLink to={token ? "/home/all" : "/"}>
             <Button
               className={classes.button}
               color="primary"

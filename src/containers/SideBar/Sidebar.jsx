@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Divider, useMediaQuery } from "@material-ui/core";
 import { Box, CircularProgress, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
@@ -5,17 +6,20 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { useStyles } from "./style";
 import AddIcon from "@mui/icons-material/Add";
 import { useGetUserQuery } from "../../apis/userApi";
+import { ROUTES } from "../../constants";
 
 function SideBar({ openDrawer, setOpenDrawer }) {
   const classes = useStyles();
-  const profilePhoto = "https://picsum.photos/200/300";
   const down700 = useMediaQuery("(max-width:700px)");
 
   const handleClick = () => {
     setOpenDrawer(!openDrawer);
   };
 
-  const { data, isLoading, isFetching, isError } = useGetUserQuery();
+  const { data, isFetching, isError } = useGetUserQuery();
+  if (isError) {
+    return;
+  }
   if (isFetching || !data) {
     return <CircularProgress />;
   }
@@ -66,19 +70,31 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         justifyContent="center"
         alignItems="center"
       >
-        <NavLink to="all" className={classes.buttons} onClick={handleClick}>
+        <NavLink
+          to={ROUTES.ALLPOSTS}
+          className={classes.buttons}
+          onClick={handleClick}
+        >
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>{user.totalPosts}</Box>
           </Box>
           <Box className={classes.btnText}>All Posts</Box>
         </NavLink>
-        <NavLink to="liked" className={classes.buttons} onClick={handleClick}>
+        <NavLink
+          to={ROUTES.LIKEDPOSTS}
+          className={classes.buttons}
+          onClick={handleClick}
+        >
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>{user.likedPosts}</Box>
           </Box>
           <Box className={classes.btnText}>Liked</Box>
         </NavLink>
-        <NavLink to="add" className={classes.buttons} onClick={handleClick}>
+        <NavLink
+          to={ROUTES.ADDPOST}
+          className={classes.buttons}
+          onClick={handleClick}
+        >
           <Box className={classes.btnCount}>
             <Box className={classes.btnCountText}>
               <AddIcon
@@ -89,7 +105,7 @@ function SideBar({ openDrawer, setOpenDrawer }) {
           <Box className={classes.btnText}>Add Post</Box>
         </NavLink>
         <NavLink
-          to="settings"
+          to={ROUTES.SETTINGS}
           className={classes.buttons}
           onClick={handleClick}
         >

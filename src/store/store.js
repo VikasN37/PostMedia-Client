@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { postsApi } from "../src/apis/postsApi";
-import { userApi } from "../src/apis/userApi";
+
 import {
   persistStore,
   persistReducer,
@@ -13,7 +12,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import rootReducer from "./rootReducer";
-import { mainApi } from "../src/apis/mainApi";
+import { mainApi } from "../apis/mainApi";
 
 const persistConfig = {
   key: "root",
@@ -34,12 +33,9 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(mainApi.middleware);
-    // .concat(postsApi.middleware)
-    // .concat(userApi.middleware);
   },
 });
 export const persistor = persistStore(store);
-// setupListeners(store.dispatch);
 
 export default store;
 export {
@@ -47,7 +43,7 @@ export {
   useAddPostMutation,
   useDeletePostMutation,
   useUpdatePostMutation,
-} from "../src/apis/postsApi";
+} from "../apis/postsApi";
 
 export {
   useLoginMutation,
@@ -57,4 +53,6 @@ export {
   useUpdateUserMutation,
   useLogoutMutation,
   useDeleteAccountMutation,
-} from "../src/apis/userApi";
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
+} from "../apis/userApi";

@@ -4,10 +4,15 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useLogoutMutation } from "../../apis/userApi";
+import {
+  useDeleteAccountMutation,
+  useLogoutMutation,
+} from "../../apis/userApi";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetToken } from "../../apis/authSlice";
+import { ROUTES } from "../../constants";
+import { mainApi } from "../../apis/mainApi";
 
 function Settings() {
   const classes = useStyles();
@@ -19,9 +24,15 @@ function Settings() {
     let entered = prompt(
       "Type 'DELETE' to confirm. This action is irreversible."
     );
+    if (entered === "DELETE") {
+      deleteAccount();
+      dispatch(resetToken());
+      navigate("/");
+    }
   };
 
   const [logout, { isSuccess }] = useLogoutMutation();
+  const [deleteAccount] = useDeleteAccountMutation();
 
   function handleLogout(e) {
     e.preventDefault();
@@ -31,6 +42,7 @@ function Settings() {
   useEffect(() => {
     if (isSuccess) {
       dispatch(resetToken());
+      dispatch(mainApi.util.resetApiState());
       navigate("/");
     }
   });
@@ -57,7 +69,10 @@ function Settings() {
         justifyContent={"flex-start"}
         alignItems={down700 ? "center" : "flex-start"}
       >
-        <NavLink to={"edit"} className={classes.listItem}>
+        <NavLink
+          to={`/home/${ROUTES.EDITPROFILE}`}
+          className={classes.listItem}
+        >
           <Box>Edit Profile</Box>
           <Box>
             <KeyboardArrowRightIcon
@@ -66,7 +81,11 @@ function Settings() {
           </Box>
         </NavLink>
 
-        <NavLink to={"changePassword"} item className={classes.listItem}>
+        <NavLink
+          to={`/home/${ROUTES.CHANGEPASSWORD}`}
+          item
+          className={classes.listItem}
+        >
           Change Password
           <Box>
             <KeyboardArrowRightIcon
