@@ -12,6 +12,10 @@ export const mainApi = createApi({
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
+      headers.set(
+        "Access-Control-Allow-Origin",
+        "https://postmedia-beta.vercel.app/"
+      );
       return headers;
     },
   }),
