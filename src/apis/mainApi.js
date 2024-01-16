@@ -14,7 +14,7 @@ export const mainApi = createApi({
       }
       headers.set(
         "Access-Control-Allow-Origin",
-        "https://postmedia-beta.vercel.app/"
+        "https://postmedia-beta.vercel.app"
       );
       return headers;
     },
