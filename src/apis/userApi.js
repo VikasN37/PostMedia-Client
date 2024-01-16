@@ -41,7 +41,6 @@ const userApi = mainApi.injectEndpoints({
     }),
 
     changePassword: builder.mutation({
-      // invalidatesTags: ["User"],
       query: (passwordBody) => ({
         url: "api/v1/users/updatePassword",
         body: passwordBody,

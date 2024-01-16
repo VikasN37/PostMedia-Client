@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Divider, useMediaQuery } from "@material-ui/core";
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Avatar, Box, CircularProgress, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useStyles } from "./style";
@@ -42,13 +42,14 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         className={classes.profilePart}
         gap={1.5}
       >
-        <Grid
-          item
-          className={classes.profilePhoto}
+        <Avatar
+          src={`http://127.0.0.1:8080/profilePhotos/${user.profilePhoto}`}
           sx={{
-            backgroundImage: `url(http://127.0.0.1:8080/profilePhotos/${user.profilePhoto})`,
+            width: "clamp(50px, 40px + 5vw + 10vh, 250px)",
+            height: "clamp(50px, 40px + 5vw + 10vh, 250px)",
           }}
-        ></Grid>
+          className={classes.profilePhoto}
+        />
 
         <Grid
           container

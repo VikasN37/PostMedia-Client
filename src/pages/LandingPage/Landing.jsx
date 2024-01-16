@@ -54,9 +54,9 @@ function LandingPage() {
         </Grid>
 
         <Box item className={classes.buttonSection}>
-          <Link smooth to={"/#about"} className={classes.navButtons}>
+          <a href="./#about" className={classes.navButtons}>
             <Box>About</Box>
-          </Link>
+          </a>
 
           <NavLink to={ROUTES.LOGIN} className={classes.navButtons}>
             <Box>Login</Box>
@@ -259,83 +259,89 @@ function LandingPage() {
 
       {/* footer */}
 
-      <Grid
-        container
-        className={classes.footer}
-        width={"100%"}
-        flexDirection={down400 ? "column" : "row"}
-        bgcolor="#0F1521"
-      >
+      <div id="about">
         <Grid
-          item
           container
-          width={down400 ? "100%" : "50%"}
-          height={"100%"}
-          flexDirection={"column"}
-          marginBottom={"16px"}
-          className={classes.container}
+          className={classes.footer}
+          width={"100%"}
+          flexDirection={down400 ? "column" : "row"}
+          bgcolor="#0F1521"
         >
-          <Grid item className={classes.footerHeading} marginBottom={"12px"}>
-            PostMedia
-          </Grid>
-          <Grid
-            item
-            className={classes.footerContent}
-            justifyContent={"center"}
-          >
-            <Typography fontSize={"clamp(13px, 8px + 1vw, 20px)"}>
-              With intuitive navigation and high-definition visuals, our app
-              brings the gallery experience right to your device. Elevate your
-              appreciation for art anytime, anywhere.{" "}
-              <Link to="/signup">Register Now !</Link>
-            </Typography>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          container
-          width={down400 ? "100%" : "50%"}
-          height={"100%"}
-          flexDirection={"column"}
-          className={classes.container}
-        >
-          <Grid item className={classes.footerHeading} marginBottom={"12px"}>
-            {" "}
-            About{" "}
-          </Grid>
-          <Grid item className={classes.footerContent}>
-            <Typography fontSize={"clamp(13px, 8px + 1vw, 20px)"}>
-              I am a passionate web developer committed to create website that
-              are seamless, intuitive and that resonate with our clients&apos;
-              visions. You can connect with me on different platforms.
-            </Typography>
-          </Grid>
           <Grid
             item
             container
-            className={classes.iconsContainer}
-            justifyContent={"space-evenly"}
+            width={down400 ? "100%" : "50%"}
+            height={"100%"}
+            flexDirection={"column"}
+            marginBottom={"16px"}
+            className={classes.container}
           >
-            <Grid item width={"25%"}>
-              <Link to="mailto:vikas630602@gmail.com">
-                <img alt="gmail" src={message} className={classes.icons} />
-              </Link>
+            <Grid item className={classes.footerHeading} marginBottom={"12px"}>
+              PostMedia
             </Grid>
-            <Grid item width={"25%"}>
-              <Link to="https://github.com/VikasN37">
-                <img alt="github" src={github} className={classes.icons} />
-              </Link>
+            <Grid
+              item
+              className={classes.footerContent}
+              justifyContent={"center"}
+            >
+              <Typography fontSize={"clamp(13px, 8px + 1vw, 20px)"}>
+                With intuitive navigation and high-definition visuals, our app
+                brings the gallery experience right to your device. Elevate your
+                appreciation for art anytime, anywhere.{" "}
+                <Link to="/signup">Register Now !</Link>
+              </Typography>
             </Grid>
+          </Grid>
 
-            <Grid item width={"25%"}>
-              <Link to="www.linkedin.com/in/vikas-niranjan/">
-                <img alt="linkedin" src={linkedin} className={classes.icons} />
-              </Link>
+          <Grid
+            item
+            container
+            width={down400 ? "100%" : "50%"}
+            height={"100%"}
+            flexDirection={"column"}
+            className={classes.container}
+          >
+            <Grid item className={classes.footerHeading} marginBottom={"12px"}>
+              {" "}
+              About{" "}
+            </Grid>
+            <Grid item className={classes.footerContent}>
+              <Typography fontSize={"clamp(13px, 8px + 1vw, 20px)"}>
+                I am a passionate web developer committed to create website that
+                are seamless, intuitive and that resonate with our clients&apos;
+                visions. You can connect with me on different platforms.
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              container
+              className={classes.iconsContainer}
+              justifyContent={"space-evenly"}
+            >
+              <Grid item width={"25%"}>
+                <Link to="mailto:vikas630602@gmail.com">
+                  <img alt="gmail" src={message} className={classes.icons} />
+                </Link>
+              </Grid>
+              <Grid item width={"25%"}>
+                <Link to="https://github.com/VikasN37">
+                  <img alt="github" src={github} className={classes.icons} />
+                </Link>
+              </Grid>
+
+              <Grid item width={"25%"}>
+                <Link to="https://www.linkedin.com/in/vikas-niranjan/">
+                  <img
+                    alt="linkedin"
+                    src={linkedin}
+                    className={classes.icons}
+                  />
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </div>
     </Grid>
   );
 }

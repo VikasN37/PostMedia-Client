@@ -16,9 +16,10 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: "0.4vh",
   },
   profilePhoto: {
-    width: "clamp(50px, 40px + 5vw + 10vh, 250px)",
+    // width: "clamp(50px, 40px + 5vw + 10vh, 250px)",
     border: `2px solid ${theme.palette.primary.main}`,
-    height: "clamp(50px, 40px + 5vw + 10vh, 250px)",
+    // height: "clamp(50px, 40px + 5vw + 10vh, 250px)",
+
     borderRadius: "50%",
   },
   username: {

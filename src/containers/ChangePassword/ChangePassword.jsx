@@ -11,19 +11,22 @@ import {
 import { useStyles } from "./style";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Button } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useChangePasswordMutation } from "../../apis/userApi";
 import { ROUTES } from "../../constants";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../apis/authSlice";
 
 function ChangePassword() {
   const classes = useStyles();
   const down700 = useMediaQuery("(max-width:700px)");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const [open, setOpen] = useState(false);
   const [passwordBody, setPasswordBody] = useState({});
-  const [changePassword, { isLoading, isSuccess, isError }] =
+  const [changePassword, { data, isLoading, isSuccess, isError }] =
     useChangePasswordMutation();
 
   function handleChange(e) {
@@ -34,6 +37,13 @@ function ChangePassword() {
     changePassword(passwordBody);
   }
 
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setToken(data.data.token));
+
+      navigate(`/home/${ROUTES.ALLPOSTS}`);
+    }
+  });
   return (
     <Grid container className={classes.outletContainer}>
       {isSuccess && (
@@ -43,21 +53,7 @@ function ChangePassword() {
           </Alert>
         </Snackbar>
       )}
-      {isError && (
-        <Snackbar
-          open={open}
-          autoHideDuration={2000}
-          onClose={() => setOpen(false)}
-        >
-          <Alert
-            severity="error"
-            sx={{ width: "100%" }}
-            onClose={() => setOpen(false)}
-          >
-            Wrong Password. Try again
-          </Alert>
-        </Snackbar>
-      )}
+
       <Grid
         item
         container
@@ -155,6 +151,11 @@ function ChangePassword() {
             </Box>
           </Box>
         </NavLink>
+        {isError && (
+          <Typography variant="h6" color={"red"}>
+            Something went wrong. Try again with correct information
+          </Typography>
+        )}
       </Grid>
     </Grid>
   );
