@@ -9,5 +9,5 @@ export const ROUTES = {
   EDITPROFILE: "edit",
   CHANGEPASSWORD: "changePassword",
   RESETPASSWORD: "resetPassword",
-  BASE_URL: "https://postmedia-server-ten.vercel.app/",
+  BASE_URL: "https://postmedia-backend.onrender.com/",
 };
