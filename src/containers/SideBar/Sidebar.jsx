@@ -43,7 +43,11 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         gap={1.5}
       >
         <Avatar
-          src={`${ROUTES.BASE_URL}profilePhotos/${user.profilePhoto}`}
+          src={
+            user.profilePhoto
+              ? `${ROUTES.BASE_URL}profilePhotos/${user.profilePhoto}`
+              : ""
+          }
           sx={{
             width: "clamp(50px, 40px + 5vw + 10vh, 250px)",
             height: "clamp(50px, 40px + 5vw + 10vh, 250px)",
