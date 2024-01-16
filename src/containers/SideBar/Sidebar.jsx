@@ -25,6 +25,7 @@ function SideBar({ openDrawer, setOpenDrawer }) {
   }
   const { user } = data.data;
 
+  console.log(user.profilePhoto);
   return (
     <Grid
       container
