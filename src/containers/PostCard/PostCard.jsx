@@ -17,6 +17,7 @@ import {
   useUpdatePostMutation,
 } from "../../apis/postsApi";
 import { useGetUserQuery } from "../../apis/userApi";
+import { ROUTES } from "../../constants";
 
 function PostCard({ post }) {
   const classes = useStyles();
@@ -47,7 +48,7 @@ function PostCard({ post }) {
             }}
             src={
               isSuccess &&
-              `https://postmedia-backend.onrender.com/profilePhotos/${data.data.user.profilePhoto}`
+              `${ROUTES.BASE_URL}profilePhotos/${data.data.user.profilePhoto}`
             }
             https:aria-label="recipe"
           />
@@ -56,7 +57,7 @@ function PostCard({ post }) {
 
       <CardMedia
         component="img"
-        image={`https://postmedia-backend.onrender.com/postPhotos/${image}`}
+        image={`${ROUTES.BASE_URL}postPhotos/${image}`}
         alt="Photo"
       />
       <CardContent className={classes.content}>{caption}</CardContent>
