@@ -48,7 +48,9 @@ function PostCard({ post }) {
             }}
             src={
               isSuccess &&
-              `${ROUTES.BASE_URL}profilePhotos/${data.data.user.profilePhoto}`
+              (data.data.user.profilePhoto
+                ? `${ROUTES.BASE_URL}profilePhotos/${data.data.user.profilePhoto}`
+                : "")
             }
             https:aria-label="recipe"
           />
