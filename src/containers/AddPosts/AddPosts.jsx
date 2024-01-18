@@ -1,6 +1,7 @@
 import {
   Alert,
   Box,
+  CircularProgress,
   Grid,
   Snackbar,
   TextField,
@@ -24,7 +25,7 @@ function AddPosts() {
   const [location, setLocation] = useState("");
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState();
-  const [addPost, { isError, isSuccess }] = useAddPostMutation();
+  const [addPost, { isError, isSuccess, isLoading }] = useAddPostMutation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -91,10 +92,6 @@ function AddPosts() {
               }
               color="primary"
             >
-              {/* <Typography
-                fontSize={"clamp(13px, 10px + 1vw, 18px)"}
-                textTransform={"none"}
-              > */}
               Select Photo
               <input
                 type="file"
@@ -103,7 +100,6 @@ function AddPosts() {
                 onChange={(e) => setFile(e.target.files[0])}
                 hidden
               />
-              {/* </Typography> */}
             </Button>
           </Box>
         </Grid>
@@ -148,7 +144,7 @@ function AddPosts() {
               fontSize={"clamp(13px, 10px + 1vw, 18px)"}
               textTransform={"none"}
             >
-              Upload
+              {isLoading ? <CircularProgress /> : "Upload"}
             </Typography>
           </Button>
         </Grid>
