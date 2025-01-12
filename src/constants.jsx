@@ -10,4 +10,5 @@ export const ROUTES = {
   CHANGEPASSWORD: "changePassword",
   RESETPASSWORD: "resetPassword",
   BASE_URL: "https://postmedia-backend.onrender.com/",
+  BASE_URL_DEV: "http://127.0.0.1:8080/",
 };

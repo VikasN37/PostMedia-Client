@@ -49,7 +49,7 @@ function PostCard({ post }) {
             src={
               isSuccess &&
               (data.data.user.profilePhoto
-                ? `${ROUTES.BASE_URL}profilePhotos/${data.data.user.profilePhoto}`
+                ? `${ROUTES.BASE_URL_DEV}profilePhotos/${data.data.user.profilePhoto}`
                 : "")
             }
             https:aria-label="recipe"
@@ -59,7 +59,7 @@ function PostCard({ post }) {
 
       <CardMedia
         component="img"
-        image={`${ROUTES.BASE_URL}postPhotos/${image}`}
+        image={`${ROUTES.BASE_URL_DEV}postPhotos/${image}`}
         alt="Photo"
       />
       <CardContent className={classes.content}>{caption}</CardContent>

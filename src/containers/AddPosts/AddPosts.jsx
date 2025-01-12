@@ -25,7 +25,25 @@ function AddPosts() {
   const [location, setLocation] = useState("");
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState();
+  const [imgSrc, setImgSrc] = useState(null);
   const [addPost, { isError, isSuccess, isLoading }] = useAddPostMutation();
+
+  console.log(file);
+
+  function handleImageChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImgSrc(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // setFile(null);
+      setImgSrc(null);
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -79,28 +97,32 @@ function AddPosts() {
       >
         <Grid item to={"edit"} className={classes.listItem}>
           <Box>Select Photo :</Box>
-          <Box className={classes.uploadButton}>
-            <Button
-              input
-              fullWidth
-              variant="contained"
-              component="label"
-              startIcon={
-                <CloudUploadIcon
-                  sx={{ fontSize: "clamp(16px, 13px + 1vw, 24px)" }}
+          <Box className={classes.uploadButton} marginBottom={"10px"}>
+            {imgSrc ? (
+              <img src={imgSrc} width={"60%"} height={"70px"}></img>
+            ) : (
+              <Button
+                input
+                fullWidth
+                variant="contained"
+                component="label"
+                startIcon={
+                  <CloudUploadIcon
+                    sx={{ fontSize: "clamp(16px, 13px + 1vw, 24px)" }}
+                  />
+                }
+                color="primary"
+              >
+                Select Photo
+                <input
+                  type="file"
+                  name="image"
+                  style={{ width: "100%" }}
+                  onChange={handleImageChange}
+                  hidden
                 />
-              }
-              color="primary"
-            >
-              Select Photo
-              <input
-                type="file"
-                name="image"
-                style={{ width: "100%" }}
-                onChange={(e) => setFile(e.target.files[0])}
-                hidden
-              />
-            </Button>
+              </Button>
+            )}
           </Box>
         </Grid>
 

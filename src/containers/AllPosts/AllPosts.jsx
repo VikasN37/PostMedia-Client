@@ -29,6 +29,7 @@ function AllPosts() {
       post.location.toUpperCase().startsWith(searchString.toUpperCase())
     );
   }
+  console.log(posts);
 
   return (
     <Grid container className={classes.outletContainer}>

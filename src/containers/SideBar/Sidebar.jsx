@@ -46,7 +46,7 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         <Avatar
           src={
             user.profilePhoto
-              ? `${ROUTES.BASE_URL}profilePhotos/${user.profilePhoto}`
+              ? `${ROUTES.BASE_URL_DEV}profilePhotos/${user.profilePhoto}`
               : ""
           }
           sx={{
