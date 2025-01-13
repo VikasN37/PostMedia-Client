@@ -5,7 +5,7 @@ export const mainApi = createApi({
   reducerPath: "api",
   tagTypes: ["User", "Post"],
   baseQuery: fetchBaseQuery({
-    baseUrl: ROUTES.BASE_URL_DEV,
+    baseUrl: ROUTES.BASE_URL,
 
     prepareHeaders: (headers, { getState }) => {
       const token = getState().root.auth.token;
