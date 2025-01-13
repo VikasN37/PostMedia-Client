@@ -17,7 +17,6 @@ import {
   useUpdatePostMutation,
 } from "../../apis/postsApi";
 import { useGetUserQuery } from "../../apis/userApi";
-import { ROUTES } from "../../constants";
 
 function PostCard({ post }) {
   const classes = useStyles();
@@ -27,6 +26,8 @@ function PostCard({ post }) {
   const { data, isSuccess } = useGetUserQuery();
 
   const { _id, location, date, image, caption, liked } = post;
+
+  console.log(image);
 
   function handleClick(e) {
     e.preventDefault();
@@ -48,20 +49,14 @@ function PostCard({ post }) {
             }}
             src={
               isSuccess &&
-              (data.data.user.profilePhoto
-                ? `${ROUTES.BASE_URL_DEV}profilePhotos/${data.data.user.profilePhoto}`
-                : "")
+              (data.data.user.profilePhoto ? data.data.user.profilePhoto : "")
             }
             https:aria-label="recipe"
           />
         }
       />
 
-      <CardMedia
-        component="img"
-        image={`${ROUTES.BASE_URL_DEV}postPhotos/${image}`}
-        alt="Photo"
-      />
+      <CardMedia component="img" image={image} alt="Photo" />
       <CardContent className={classes.content}>{caption}</CardContent>
       <CardActions disableSpacing>
         <IconButton

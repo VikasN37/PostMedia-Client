@@ -24,8 +24,7 @@ function SideBar({ openDrawer, setOpenDrawer }) {
     return <CircularProgress />;
   }
   const { user } = data.data;
-
-  console.log(user.profilePhoto);
+  console.log(user);
   return (
     <Grid
       container
@@ -44,11 +43,7 @@ function SideBar({ openDrawer, setOpenDrawer }) {
         gap={1.5}
       >
         <Avatar
-          src={
-            user.profilePhoto
-              ? `${ROUTES.BASE_URL_DEV}profilePhotos/${user.profilePhoto}`
-              : ""
-          }
+          src={user.profilePhoto ? user.profilePhoto : ""}
           sx={{
             width: "clamp(50px, 40px + 5vw + 10vh, 250px)",
             height: "clamp(50px, 40px + 5vw + 10vh, 250px)",

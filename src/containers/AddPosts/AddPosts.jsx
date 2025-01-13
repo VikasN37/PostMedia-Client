@@ -28,8 +28,6 @@ function AddPosts() {
   const [imgSrc, setImgSrc] = useState(null);
   const [addPost, { isError, isSuccess, isLoading }] = useAddPostMutation();
 
-  console.log(file);
-
   function handleImageChange(event) {
     const file = event.target.files[0];
     if (file) {

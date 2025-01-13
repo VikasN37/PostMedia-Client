@@ -135,6 +135,7 @@ function LoginPage() {
             />
 
             <TextField
+              type="password"
               variant="outlined"
               placeholder="Enter password"
               fullWidth

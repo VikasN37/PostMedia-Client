@@ -158,6 +158,7 @@ function SignupPage() {
             ></TextField>
 
             <TextField
+              type="password"
               variant="outlined"
               placeholder="Enter password"
               name="password"
@@ -168,6 +169,7 @@ function SignupPage() {
             ></TextField>
 
             <TextField
+              type="password"
               variant="outlined"
               placeholder="Confirm Password"
               name="confirmPassword"
